@@ -9,3 +9,11 @@ function tickerUrl(ticker) {
 export function getTickerInfo(ticker) {
   return http.get(tickerUrl(ticker));
 }
+
+export function getTickerHistory(ticker) {
+  return http.get(tickerUrl(ticker) + "/history");
+}
+
+export function getTickers() {
+  return http.get("/tickers");
+}
