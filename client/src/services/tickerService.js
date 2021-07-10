@@ -14,6 +14,6 @@ export function getTickerHistory(ticker) {
   return http.get(tickerUrl(ticker) + "/history");
 }
 
-export function getTickers() {
-  return http.get("/tickers");
+export function getTickers(value) {
+  return http.get(tickerUrl(value) + "/matching");
 }

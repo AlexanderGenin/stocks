@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import yf from "yahoo-finance";
 import InfoSection from "./components/infoSection";
-import Search from "./components/searchBox";
+import SearchBox from "./components/searchBox";
 import { getTickers } from "./services/tickerService";
 import { getTickerInfo, getTickerHistory } from "./services/tickerService";
 import ChartBox from "./components/chartBox";
 
 class App extends Component {
   state = {
-    tickersList: [],
+    typingTimeout: 0,
+    matchingTickers: [],
     ticker: "",
     price: "",
     previousPrice: "",
@@ -24,17 +25,22 @@ class App extends Component {
           reverse: true,
         },
       },
+      elements: {
+        point: {
+          radius: 0,
+        },
+      },
     },
   };
 
-  handleSubmit = async (ticker) => {
+  handleSubmit = async (e) => {
+    const ticker = e.target.query.value;
     try {
       const data = await getTickerInfo(ticker);
-      console.log(data.data.price.regularMarketPrice);
+      console.log(data);
       const { data: tickerHistory } = await getTickerHistory(ticker);
-      console.log(tickerHistory);
+      // console.log(tickerHistory);
       this.setState({ chartData: this.formatHistoryData(tickerHistory) });
-
       // setInterval(async function () {
       //   const data = await getTickerInfo(ticker);
       //   console.log(data.data.price.regularMarketPrice);
@@ -52,20 +58,40 @@ class App extends Component {
   };
 
   formatHistoryData = (tickerHistory) => {
+    tickerHistory.forEach(
+      (el) => (el.date = new Date(el.date).toLocaleDateString("ru-RU"))
+    );
+
     return {
       datasets: [
         {
           data: tickerHistory,
           backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
+          lineTension: 0.5,
         },
       ],
     };
   };
 
-  // handleChange = ({ currentTarget: input }) => {
-  //   // this.setState({ ticker: e.target.value });
-  // };
+  handleChange = (e) => {
+    if (this.state.typingTimeout) {
+      clearTimeout(this.state.typingTimeout);
+    }
+
+    this.setState({
+      ticker: e.target.value,
+      typingTimeout: setTimeout(() => {
+        this.getTickers(e.target.value);
+      }, 1000),
+    });
+  };
+
+  getTickers = async (value) => {
+    const { data: matchingTickers } = await getTickers(value);
+    const mapped = matchingTickers.map((el) => el.Ticker);
+    this.setState({ matchingTickers: mapped });
+  };
 
   render() {
     let chart = !(
@@ -78,19 +104,15 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello</h1>
-        <p>Type in the ticker</p>
-        <Search
-          options={this.state.tickersList}
+        <SearchBox
+          options={this.state.matchingTickers}
           placeholder={"Type in the ticker..."}
           inputId={"tickers-input"}
           listId={"tickers-list"}
           onSubmit={this.handleSubmit}
-          // onChnage={this.handleChange}
+          onChange={this.handleChange}
         />
         {chart}
-        {/* <InfoSection ticker={this.state.ticker} /> */}
-        {/* <p>{this.state.price}</p> */}
-        {/* <p>{this.state.price - this.state.previousPrice}</p> */}
       </div>
     );
   }
