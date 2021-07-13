@@ -1,60 +1,70 @@
 import React, { Component } from "react";
-import yf from "yahoo-finance";
-import InfoSection from "./components/infoSection";
-import SearchBox from "./components/searchBox";
+import Search from "./components/Search/index";
 import { getTickers } from "./services/tickerService";
 import { getTickerInfo, getTickerHistory } from "./services/tickerService";
-import ChartBox from "./components/chartBox";
+import ChartBox from "./components/ChartBox";
+import Heading from "./components/Heading";
+import Price from "./components/Price";
 
 class App extends Component {
   state = {
     typingTimeout: 0,
     matchingTickers: [],
     ticker: "",
-    price: "",
     previousPrice: "",
     tickerHistory: null,
-    chartData: {},
-    chartOptions: {
-      parsing: {
-        xAxisKey: "date",
-        yAxisKey: "close",
-      },
-      scales: {
-        x: {
-          reverse: true,
-        },
-      },
-      elements: {
-        point: {
-          radius: 0,
-        },
-      },
-    },
   };
 
   handleSubmit = async (e) => {
     const ticker = e.target.query.value;
     try {
-      const data = await getTickerInfo(ticker);
-      console.log(data);
+      const { data: tickerData } = await getTickerInfo(ticker);
+      this.setState({ tickerData });
+      console.log(tickerData);
       const { data: tickerHistory } = await getTickerHistory(ticker);
-      // console.log(tickerHistory);
-      this.setState({ chartData: this.formatHistoryData(tickerHistory) });
-      // setInterval(async function () {
-      //   const data = await getTickerInfo(ticker);
-      //   console.log(data.data.price.regularMarketPrice);
-      // }, 2000);
+      this.setState({
+        chartData: this.formatHistoryData(tickerHistory),
+        chartOptions: {
+          animation: {
+            duration: 0,
+          },
+          parsing: {
+            xAxisKey: "date",
+            yAxisKey: "close",
+          },
+          scales: {
+            x: {
+              grid: {
+                display: false,
+              },
+              reverse: true,
+            },
+            y: {
+              grid: {
+                display: false,
+              },
+            },
+          },
+          elements: {
+            point: {
+              radius: 0,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      setInterval(async function () {
+        const { data: tickerData } = await getTickerInfo(ticker);
+        this.setState({ price: tickerData.price.regularMarketPrice });
+      }, 2000);
     } catch (e) {
       console.error(e);
     }
-    // const { data } = await getTickerInfo(this.state.ticker);
-    // console.log(data);
-    // this.setState((state) => ({
-    //   price: data.price.regularMarketPrice,
-    //   previousPrice: state.price,
-    // }));
-    // setInterval();
   };
 
   formatHistoryData = (tickerHistory) => {
@@ -65,9 +75,10 @@ class App extends Component {
     return {
       datasets: [
         {
+          label: "",
           data: tickerHistory,
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
+          borderColor: "#2FC57D",
+          borderWidth: 2,
           lineTension: 0.5,
         },
       ],
@@ -94,17 +105,9 @@ class App extends Component {
   };
 
   render() {
-    let chart = !(
-      this.state.chartData &&
-      Object.keys(this.state.chartData).length === 0 &&
-      this.state.chartData.constructor === Object
-    ) ? (
-      <ChartBox data={this.state.chartData} options={this.state.chartOptions} />
-    ) : null;
     return (
-      <div className="App">
-        <h1>Hello</h1>
-        <SearchBox
+      <React.Fragment>
+        <Search
           options={this.state.matchingTickers}
           placeholder={"Type in the ticker..."}
           inputId={"tickers-input"}
@@ -112,8 +115,22 @@ class App extends Component {
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
         />
-        {chart}
-      </div>
+        {this.state.tickerData && (
+          <Heading
+            content={this.state.tickerData.price.longName}
+            ticker={this.state.tickerData.price.symbol}
+          />
+        )}
+        {/* {this.state.tickerData && (
+          <Price current={this.state.tickerData.price.regularMarketPrice} />
+        )} */}
+        {this.state.chartData && (
+          <ChartBox
+            data={this.state.chartData}
+            options={this.state.chartOptions}
+          />
+        )}
+      </React.Fragment>
     );
   }
 }

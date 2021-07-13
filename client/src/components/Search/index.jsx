@@ -1,16 +1,18 @@
 import { Component } from "react";
+import { SearchContainer, SearchInput, SearchButton } from "./search-styles";
+import { RiSearchLine } from "react-icons/ri";
 
-class SearchBox extends Component {
+class Search extends Component {
   render() {
     return (
-      <div>
+      <SearchContainer>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             this.props.onSubmit(e);
           }}
         >
-          <input
+          <SearchInput
             id={this.props.inputId}
             list={this.props.listId}
             type="text"
@@ -24,11 +26,13 @@ class SearchBox extends Component {
               <option value={option} key={key} />
             ))}
           </datalist>
-          <button type="submit">Search</button>
+          <SearchButton type="submit">
+            <RiSearchLine />
+          </SearchButton>
         </form>
-      </div>
+      </SearchContainer>
     );
   }
 }
 
-export default SearchBox;
+export default Search;
