@@ -1,7 +1,12 @@
 import React from "react";
+import { PriceText, PriceContainer } from "./price-styles";
 
 const Price = ({ current }) => {
-  <p>{current}</p>;
+  return (
+    <PriceContainer>
+      <PriceText>{current}</PriceText>
+    </PriceContainer>
+  );
 };
 
 export default Price;
