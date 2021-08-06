@@ -51,11 +51,24 @@ class App extends Component {
 
   theme = {
     mainColor: "#2745EA",
+    extraColor: "#C639E8",
+    bgColor: "#111317",
+    boxColor: "#1A1E23",
     linesColor: "#90929673",
+    textColor: "#DAE0EB",
+    extraTextColor: "#959598",
   };
 
   handleSubmit = async (e) => {
     const ticker = e.target.query.value;
+    await this.getTicker(ticker);
+  };
+
+  handleClick = async (ticker) => {
+    await this.getTicker(ticker);
+  };
+
+  getTicker = async (ticker) => {
     try {
       // Fetch the necessary ticker data for setting the App state
       const [{ data: tickerInfo }, { data: tickerHistory }] = await Promise.all(
@@ -109,8 +122,12 @@ class App extends Component {
 
   getTickers = async (value) => {
     const { data: matchingTickers } = await getTickers(value);
-    const mapped = matchingTickers.map((el) => el.Ticker);
-    this.setState({ matchingTickers: mapped });
+    const mapped = matchingTickers;
+    let tickerWithoutDots = mapped.filter((el) => !el.Ticker.includes("."));
+    let tickerWithDots = mapped.filter((el) => el.Ticker.includes("."));
+    this.setState({
+      matchingTickers: [...tickerWithoutDots, ...tickerWithDots],
+    });
   };
 
   render() {
@@ -118,7 +135,12 @@ class App extends Component {
       <>
         <ThemeProvider theme={this.theme}>
           <Menu />
-          <Dashboard {...this.state} />
+          <Dashboard
+            {...this.state}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            onClick={this.handleClick}
+          />
         </ThemeProvider>
       </>
     );

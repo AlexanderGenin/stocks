@@ -12,7 +12,7 @@ router.get("/:value/matching", async (req, res) => {
       Ticker: { $regex: new RegExp("^" + req.params.value) },
     })
     .sort({ Ticker: 1 })
-    .limit(10)
+    .limit(5)
     .toArray();
 
   res.send(matchingTickers);

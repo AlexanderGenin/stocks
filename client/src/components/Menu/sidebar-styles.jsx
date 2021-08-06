@@ -32,3 +32,33 @@ export const Nav = styled.nav`
     }
   }
 `;
+
+export const Author = styled.div`
+  position: fixed;
+  width: 12rem;
+  height: 5rem;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+
+  p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  a {
+    color: ${(props) => props.theme.extraTextColor};
+  }
+`;
+
+export const Social = styled.div`
+  display: flex;
+
+  svg {
+    margin: auto 0.2rem;
+  }
+`;

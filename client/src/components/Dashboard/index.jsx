@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Search } from "./../Search/search-styles";
+import Search from "./../Search/index";
 import { InfoSection, Left, Right } from "./../App/app-styles";
 import Price from "./../Price/index";
 import ChartBox from "./../ChartBox/index";
@@ -14,11 +14,10 @@ export class Dashboard extends Component {
         <MainContent>
           <Search
             options={this.props.matchingTickers}
-            placeholder={"Type in the ticker..."}
-            inputId={"tickers-input"}
-            listId={"tickers-list"}
-            onSubmit={() => this.props.handleSubmit()}
-            onChange={() => this.props.handleChange()}
+            placeholder={"Type in a ticker..."}
+            onSubmit={(e) => this.props.onSubmit(e)}
+            onChange={(e) => this.props.onChange(e)}
+            onClick={(ticker) => this.props.onClick(ticker)}
           />
           {this.props.tickerInfo && (
             <Heading

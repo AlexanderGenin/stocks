@@ -2,4 +2,10 @@ body {
   margin: 0;
   font-family: 'Nunito';
   background-color: #111317;
+  color: #DAE0EB;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
