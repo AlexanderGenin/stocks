@@ -28,22 +28,22 @@ export class Dashboard extends Component {
             />
           </Wrapper>
           <InfoSection>
-            <Left>
+            <div>
               {this.props.tickerInfo && (
                 <Price
                   current={this.props.tickerInfo.price.regularMarketPrice}
                 />
               )}
               {this.props.tickerInfo && <Stats data={this.props.tickerInfo} />}
-            </Left>
-            <Right>
+            </div>
+            <div>
               {this.props.chartData && (
                 <ChartBox
                   data={this.props.chartData}
                   options={this.props.chartOptions}
                 />
               )}
-            </Right>
+            </div>
           </InfoSection>
         </MainContent>
       </>

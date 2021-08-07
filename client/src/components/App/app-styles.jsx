@@ -6,17 +6,8 @@ export const Container = styled.div`
 `;
 
 export const InfoSection = styled.div`
+  margin: 1rem 4rem;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  justify-content: center;
-`;
-
-export const Left = styled.div`
-  width: 300px;
-  margin: 1rem;
-`;
-
-export const Right = styled.div`
-  width: 700px;
-  margin: 1rem;
 `;
