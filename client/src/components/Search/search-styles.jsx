@@ -37,8 +37,7 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchContainer = styled.div`
-  width: calc(100% - 8rem);
-  margin: 2rem;
+  margin-left: auto;
   display: flex;
   justify-content: flex-end;
 `;

@@ -4,6 +4,7 @@ import { getTickerInfo, getTickerHistory } from "../../services/tickerService";
 import { Menu } from "../Menu/index";
 import { ThemeProvider } from "styled-components";
 import Dashboard from "../Dashboard";
+import { Container } from "./app-styles";
 
 class App extends Component {
   state = {
@@ -60,11 +61,13 @@ class App extends Component {
   };
 
   handleSubmit = async (e) => {
+    this.clearData();
     const ticker = e.target.query.value;
     await this.getTicker(ticker);
   };
 
   handleClick = async (ticker) => {
+    this.clearData();
     await this.getTicker(ticker);
   };
 
@@ -94,8 +97,8 @@ class App extends Component {
 
     const data = (canvas) => {
       let ctx = canvas.getContext("2d");
-      let gradient = ctx.createLinearGradient(0, 0, 0, 270);
-      gradient.addColorStop(0, "#C639E8");
+      let gradient = ctx.createLinearGradient(0, 0, 0, 260);
+      gradient.addColorStop(0, "#2744ea4b");
       gradient.addColorStop(1, "#09090B");
 
       return {
@@ -105,7 +108,7 @@ class App extends Component {
             data: tickerHistory,
             fill: true,
             backgroundColor: gradient,
-            borderColor: "#C639E8",
+            borderColor: this.theme.mainColor,
             borderWidth: 2,
             lineTension: 0.5,
           },
@@ -130,17 +133,30 @@ class App extends Component {
     });
   };
 
+  clearData = () => {
+    console.log("cleared");
+    this.setState({
+      prevPrice: null,
+      tickerInfo: null,
+      tickerHistory: null,
+      chartData: null,
+    });
+  };
+
   render() {
     return (
       <>
         <ThemeProvider theme={this.theme}>
-          <Menu />
-          <Dashboard
-            {...this.state}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
-            onClick={this.handleClick}
-          />
+          <Container>
+            <Menu />
+            <Dashboard
+              {...this.state}
+              onChange={this.handleChange}
+              onSubmit={this.handleSubmit}
+              onClick={this.handleClick}
+              clearData={this.clearData}
+            />
+          </Container>
         </ThemeProvider>
       </>
     );

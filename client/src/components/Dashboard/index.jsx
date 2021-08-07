@@ -5,26 +5,28 @@ import Price from "./../Price/index";
 import ChartBox from "./../ChartBox/index";
 import Stats from "../Stats";
 import Heading from "./../Heading/index";
-import { MainContent } from "./dashboard-styles";
+import { MainContent, Wrapper } from "./dashboard-styles";
 
 export class Dashboard extends Component {
   render() {
     return (
       <>
         <MainContent>
-          <Search
-            options={this.props.matchingTickers}
-            placeholder={"Type in a ticker..."}
-            onSubmit={(e) => this.props.onSubmit(e)}
-            onChange={(e) => this.props.onChange(e)}
-            onClick={(ticker) => this.props.onClick(ticker)}
-          />
-          {this.props.tickerInfo && (
-            <Heading
-              content={this.props.tickerInfo.price.longName}
-              ticker={this.props.tickerInfo.price.symbol}
+          <Wrapper>
+            {this.props.tickerInfo && (
+              <Heading
+                content={this.props.tickerInfo.price.longName}
+                ticker={this.props.tickerInfo.price.symbol}
+              />
+            )}
+            <Search
+              options={this.props.matchingTickers}
+              placeholder={"Type in a ticker..."}
+              onSubmit={(e) => this.props.onSubmit(e)}
+              onChange={(e) => this.props.onChange(e)}
+              onClick={(ticker) => this.props.onClick(ticker)}
             />
-          )}
+          </Wrapper>
           <InfoSection>
             <Left>
               {this.props.tickerInfo && (
