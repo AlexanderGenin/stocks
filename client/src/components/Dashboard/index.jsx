@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import Search from "./../Search/index";
-import { InfoSection, Left, Right } from "./../App/app-styles";
+import { InfoSection } from "./../App/app-styles";
 import Price from "./../Price/index";
 import ChartBox from "./../ChartBox/index";
 import Stats from "../Stats";
 import Heading from "./../Heading/index";
-import { MainContent, Wrapper } from "./dashboard-styles";
+import { ChartsWrapper, MainContent, Wrapper } from "./dashboard-styles";
+import PriceTarget from "../PriceTarget";
+import { BuySellDoughnut } from "./../BuySellDoughnut/index";
+import { FinancialsBar } from "./../FinancialsBar/index";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 export class Dashboard extends Component {
   render() {
     return (
       <>
         <MainContent>
+          {/* <PerfectScrollbar options={{ swipeEasing: true, wheelSpeed: 0.5 }}> */}
           <Wrapper>
             {this.props.tickerInfo && (
               <Heading
@@ -27,24 +33,32 @@ export class Dashboard extends Component {
               onClick={(ticker) => this.props.onClick(ticker)}
             />
           </Wrapper>
-          <InfoSection>
-            <div>
-              {this.props.tickerInfo && (
+          {this.props.tickerInfo && (
+            <InfoSection>
+              <div>
                 <Price
                   current={this.props.tickerInfo.price.regularMarketPrice}
                 />
-              )}
-              {this.props.tickerInfo && <Stats data={this.props.tickerInfo} />}
-            </div>
-            <div>
-              {this.props.chartData && (
-                <ChartBox
-                  data={this.props.chartData}
-                  options={this.props.chartOptions}
-                />
-              )}
-            </div>
-          </InfoSection>
+                <Stats data={this.props.tickerInfo} />
+                <PriceTarget data={this.props.tickerInfo} />
+              </div>
+              <ChartsWrapper>
+                <div>
+                  <ChartBox
+                    data={this.props.chartData}
+                    options={this.props.chartOptions}
+                  />
+                </div>
+                <div>
+                  <BuySellDoughnut />
+                </div>
+                <div>
+                  <FinancialsBar />
+                </div>
+              </ChartsWrapper>
+            </InfoSection>
+          )}
+          {/* </PerfectScrollbar> */}
         </MainContent>
       </>
     );

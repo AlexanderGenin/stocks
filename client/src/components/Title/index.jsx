@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { H3, Wrapper } from "./title-styles";
 
-export default function Title({ content, Icon }) {
+export default function Title({ content, icon }) {
   return (
-    <>
-      <Icon />
-      <h3>{content}</h3>
-    </>
+    <Wrapper>
+      {icon}
+      <H3>{content}</H3>
+    </Wrapper>
   );
 }

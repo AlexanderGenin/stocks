@@ -56,8 +56,8 @@ class App extends Component {
     bgColor: "#111317",
     boxColor: "#1A1E23",
     linesColor: "#90929673",
-    textColor: "#a2a2a5",
-    extraTextColor: "#a2a2a5",
+    textColor: "#959598",
+    extraTextColor: "#959598",
   };
 
   handleSubmit = async (e) => {
@@ -134,7 +134,6 @@ class App extends Component {
   };
 
   clearData = () => {
-    console.log("cleared");
     this.setState({
       prevPrice: null,
       tickerInfo: null,
