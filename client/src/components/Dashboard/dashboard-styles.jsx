@@ -39,7 +39,6 @@ export const Wrapper = styled.div`
 export const ChartsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: 1rem;
   grid-template-areas:
     "one one"

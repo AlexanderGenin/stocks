@@ -6,7 +6,7 @@ function tickerUrl(ticker) {
   return `${apiEndpoint}/${ticker}`;
 }
 
-export function getTickerInfo(ticker) {
+export function getTickerStats(ticker) {
   return http.get(tickerUrl(ticker));
 }
 

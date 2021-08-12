@@ -7,22 +7,23 @@ import Stats from "../Stats";
 import Heading from "./../Heading/index";
 import { ChartsWrapper, MainContent, Wrapper } from "./dashboard-styles";
 import PriceTarget from "../PriceTarget";
-import { BuySellDoughnut } from "./../BuySellDoughnut/index";
-import { FinancialsBar } from "./../FinancialsBar/index";
+import BuySellDoughnut from "./../BuySellDoughnut/index";
+import FinancialsBar from "./../FinancialsBar/index";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 export class Dashboard extends Component {
   render() {
+    console.log(this.props.tickerStats);
     return (
       <>
         <MainContent>
           {/* <PerfectScrollbar options={{ swipeEasing: true, wheelSpeed: 0.5 }}> */}
           <Wrapper>
-            {this.props.tickerInfo && (
+            {this.props.tickerStats && (
               <Heading
-                content={this.props.tickerInfo.price.longName}
-                ticker={this.props.tickerInfo.price.symbol}
+                content={this.props.tickerStats.price.longName}
+                ticker={this.props.tickerStats.price.symbol}
               />
             )}
             <Search
@@ -33,14 +34,14 @@ export class Dashboard extends Component {
               onClick={(ticker) => this.props.onClick(ticker)}
             />
           </Wrapper>
-          {this.props.tickerInfo && (
+          {this.props.tickerStats && (
             <InfoSection>
               <div>
                 <Price
-                  current={this.props.tickerInfo.price.regularMarketPrice}
+                  current={this.props.tickerStats.price.regularMarketPrice}
                 />
-                <Stats data={this.props.tickerInfo} />
-                <PriceTarget data={this.props.tickerInfo} />
+                <Stats stats={this.props.tickerStats} />
+                <PriceTarget stats={this.props.tickerStats} />
               </div>
               <ChartsWrapper>
                 <div>
@@ -50,10 +51,10 @@ export class Dashboard extends Component {
                   />
                 </div>
                 <div>
-                  <BuySellDoughnut />
+                  <BuySellDoughnut stats={this.props.tickerStats} />
                 </div>
                 <div>
-                  <FinancialsBar />
+                  <FinancialsBar stats={this.props.tickerStats} />
                 </div>
               </ChartsWrapper>
             </InfoSection>

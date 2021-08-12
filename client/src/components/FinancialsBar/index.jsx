@@ -2,36 +2,39 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import Title from "../Title/index";
 import { ReactComponent as Chart } from "../../icons/chart.svg";
+import { withTheme } from "styled-components";
 
-export class FinancialsBar extends Component {
+class FinancialsBar extends Component {
+  revenue =
+    this.props.stats &&
+    this.props.stats.earnings.financialsChart.yearly.map((el) => el.revenue);
+  earnings =
+    this.props.stats &&
+    this.props.stats.earnings.financialsChart.yearly.map((el) => el.earnings);
+
   data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["2017", "2018", "2019", "2020"],
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        label: "Revenue",
+        data: this.revenue,
+        backgroundColor: this.props.theme.mainColor,
+        borderWidth: 0,
+        barPercentage: 0.8,
+      },
+      {
+        label: "Earnings",
+        data: this.earnings,
+        backgroundColor: this.props.theme.extraColor,
+        borderWidth: 0,
+        barPercentage: 0.8,
       },
     ],
   };
 
   options = {
+    categoryPercentage: 0.6,
+    borderRadius: 4,
     plugins: {
       legend: {
         display: false,
@@ -57,4 +60,4 @@ export class FinancialsBar extends Component {
   }
 }
 
-export default FinancialsBar;
+export default withTheme(FinancialsBar);

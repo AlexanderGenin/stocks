@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getTickers } from "../../services/tickerService";
-import { getTickerInfo, getTickerHistory } from "../../services/tickerService";
+import { getTickerStats, getTickerHistory } from "../../services/tickerService";
 import { Menu } from "../Menu/index";
 import { ThemeProvider } from "styled-components";
 import Dashboard from "../Dashboard";
@@ -12,10 +12,14 @@ class App extends Component {
     typingTimeout: 0,
     matchingTickers: [],
     prevPrice: null,
-    tickerInfo: null,
+    tickerStats: null,
     tickerHistory: null,
     chartData: null,
     chartOptions: {
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
       parsing: {
         xAxisKey: "date",
         yAxisKey: "close",
@@ -40,6 +44,7 @@ class App extends Component {
       elements: {
         point: {
           radius: 0,
+          pointHoverRadius: 8,
         },
       },
       plugins: {
@@ -51,8 +56,11 @@ class App extends Component {
   };
 
   theme = {
+    darkMainColor: "#0D2398",
     mainColor: "#2745EA",
+    lightMainColor: "#7B8EF2",
     extraColor: "#C639E8",
+    lightExtraColor: "#DB80F1",
     bgColor: "#111317",
     boxColor: "#1A1E23",
     linesColor: "#90929673",
@@ -74,14 +82,13 @@ class App extends Component {
   getTicker = async (ticker) => {
     try {
       // Fetch the necessary ticker data for setting the App state
-      const [{ data: tickerInfo }, { data: tickerHistory }] = await Promise.all(
-        [getTickerInfo(ticker), getTickerHistory(ticker)]
-      );
+      const [{ data: tickerStats }, { data: tickerHistory }] =
+        await Promise.all([getTickerStats(ticker), getTickerHistory(ticker)]);
 
-      console.log(tickerInfo, tickerHistory);
+      console.log(tickerStats, tickerHistory);
 
       this.setState({
-        tickerInfo,
+        tickerStats,
         chartData: this.formatData(tickerHistory),
       });
     } catch (e) {
@@ -136,7 +143,7 @@ class App extends Component {
   clearData = () => {
     this.setState({
       prevPrice: null,
-      tickerInfo: null,
+      tickerStats: null,
       tickerHistory: null,
       chartData: null,
     });

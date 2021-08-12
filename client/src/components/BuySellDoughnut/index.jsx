@@ -3,31 +3,36 @@ import { Doughnut } from "react-chartjs-2";
 import React, { Component } from "react";
 import Title from "./../Title/index";
 import { ReactComponent as Graph } from "../../icons/graph.svg";
+import { ThemeConsumer, withTheme } from "styled-components";
 
-export class BuySellDoughnut extends Component {
+class BuySellDoughnut extends Component {
+  recs = {
+    ...(this.props.stats && this.props.stats.recommendationTrend.trend[0]),
+  }; // recommendations
+
   data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["Strong buy", "Buy", "Hold", "Underperform", "Sell"],
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: [
+          this.recs.strongBuy,
+          this.recs.buy,
+          this.recs.hold,
+          this.recs.sell,
+          this.recs.strongSell,
+        ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          this.props.theme.darkMainColor,
+          this.props.theme.mainColor,
+          this.props.theme.lightMainColor,
+          this.props.theme.lightExtraColor,
+          this.props.theme.extraColor,
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        borderWidth: 6,
+        borderColor: "#111317",
+        hoverOffset: 10,
+        cutout: 30,
+        rotation: -40,
       },
     ],
   };
@@ -35,19 +40,33 @@ export class BuySellDoughnut extends Component {
   options = {
     plugins: {
       legend: {
-        display: false,
+        display: true,
+        position: "right",
+        labels: {
+          boxWidth: 15,
+          boxHeight: 15,
+          // usePointStyle: true,
+          // pointStyle: "triangle",
+        },
       },
     },
+    responsive: false,
+    maintainAspectRatio: false,
   };
 
   render() {
     return (
       <>
         <Title content={"Recommendations"} icon={<Graph />} />
-        <Doughnut data={this.data} options={this.options} width={300} />
+        <Doughnut
+          data={this.data}
+          options={this.options}
+          width={300}
+          height={250}
+        />
       </>
     );
   }
 }
 
-export default BuySellDoughnut;
+export default withTheme(BuySellDoughnut);
