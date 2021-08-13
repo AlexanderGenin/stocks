@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Search = styled.div`
-  width: 20rem;
+  width: 10rem;
 `;
 
 export const SearchInput = styled.input`
-  width: 20rem;
+  width: 10rem;
   border: 1px solid #1a1e23;
   border-right: none;
   border-left: none;
@@ -43,7 +43,7 @@ export const SearchContainer = styled.div`
 `;
 
 export const Dropdown = styled.div`
-  width: 26.6rem;
+  width: 16.6rem;
   background-color: ${(props) => props.theme.boxColor};
   border-radius: 7px;
   margin-top: 0.2rem;

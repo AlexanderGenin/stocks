@@ -5,9 +5,20 @@ import { Menu } from "../Menu/index";
 import { ThemeProvider } from "styled-components";
 import Dashboard from "../Dashboard";
 import { Container } from "./app-styles";
+import { ReactComponent as ClipboardText } from "../../icons/clipboard-text.svg";
+import { ReactComponent as MoneyReceive } from "../../icons/money-receive.svg";
+import { ReactComponent as Activity } from "../../icons/activity.svg";
+import { ReactComponent as InfoCircle } from "../../icons/info-circle.svg";
 
 class App extends Component {
   state = {
+    items: [
+      { name: "Summary", icon: <ClipboardText /> },
+      { name: "Financials", icon: <MoneyReceive /> },
+      { name: "Analysis", icon: <Activity /> },
+      { name: "Info", icon: <InfoCircle /> },
+    ],
+    selectedItem: 0,
     ticker: "",
     typingTimeout: 0,
     matchingTickers: [],
@@ -77,6 +88,13 @@ class App extends Component {
   handleClick = async (ticker) => {
     this.clearData();
     await this.getTicker(ticker);
+  };
+
+  handleItemSelect = (itemIndex) => {
+    console.log(itemIndex);
+    this.setState({
+      selectedItem: itemIndex,
+    });
   };
 
   getTicker = async (ticker) => {
@@ -154,7 +172,11 @@ class App extends Component {
       <>
         <ThemeProvider theme={this.theme}>
           <Container>
-            <Menu />
+            <Menu
+              items={this.state.items}
+              selectedItem={this.state.selectedItem}
+              onItemSelect={this.handleItemSelect}
+            />
             <Dashboard
               {...this.state}
               onChange={this.handleChange}

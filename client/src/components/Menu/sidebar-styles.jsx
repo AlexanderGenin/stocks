@@ -13,25 +13,6 @@ export const Logo = styled.p`
   margin-bottom: 4rem;
 `;
 
-export const Nav = styled.nav`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  color: #959598;
-  text-align: center;
-  height: 22rem;
-
-  div {
-    cursor: pointer;
-
-    h2 {
-      font: 1rem "Nunito", sans-serif;
-      margin: 0.2rem;
-    }
-  }
-`;
-
 export const Author = styled.div`
   position: fixed;
   width: 12rem;

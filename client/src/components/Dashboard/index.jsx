@@ -1,24 +1,25 @@
 import React, { Component } from "react";
 import Search from "./../Search/index";
-import { InfoSection } from "./../App/app-styles";
-import Price from "./../Price/index";
-import ChartBox from "./../ChartBox/index";
-import Stats from "../Stats";
 import Heading from "./../Heading/index";
-import { ChartsWrapper, MainContent, Wrapper } from "./dashboard-styles";
-import PriceTarget from "../PriceTarget";
-import BuySellDoughnut from "./../BuySellDoughnut/index";
-import FinancialsBar from "./../FinancialsBar/index";
+import { MainContent, Wrapper } from "./dashboard-styles";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import PerfectScrollbar from "react-perfect-scrollbar";
+import Summary from "../Summary";
+import Analysis from "../Analysis";
+import Info from "../Info";
+import Financials from "../Financials";
 
 export class Dashboard extends Component {
   render() {
-    console.log(this.props.tickerStats);
+    const pages = [
+      <Summary {...this.props} />,
+      <Financials {...this.props} />,
+      <Analysis {...this.props} />,
+      <Info {...this.props} />,
+    ];
+
     return (
       <>
         <MainContent>
-          {/* <PerfectScrollbar options={{ swipeEasing: true, wheelSpeed: 0.5 }}> */}
           <Wrapper>
             {this.props.tickerStats && (
               <Heading
@@ -34,32 +35,7 @@ export class Dashboard extends Component {
               onClick={(ticker) => this.props.onClick(ticker)}
             />
           </Wrapper>
-          {this.props.tickerStats && (
-            <InfoSection>
-              <div>
-                <Price
-                  current={this.props.tickerStats.price.regularMarketPrice}
-                />
-                <Stats stats={this.props.tickerStats} />
-                <PriceTarget stats={this.props.tickerStats} />
-              </div>
-              <ChartsWrapper>
-                <div>
-                  <ChartBox
-                    data={this.props.chartData}
-                    options={this.props.chartOptions}
-                  />
-                </div>
-                <div>
-                  <BuySellDoughnut stats={this.props.tickerStats} />
-                </div>
-                <div>
-                  <FinancialsBar stats={this.props.tickerStats} />
-                </div>
-              </ChartsWrapper>
-            </InfoSection>
-          )}
-          {/* </PerfectScrollbar> */}
+          {this.props.tickerStats && pages[this.props.selectedItem]}
         </MainContent>
       </>
     );
