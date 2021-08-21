@@ -56,3 +56,7 @@ export const ChartsWrapper = styled.div`
     grid-area: three;
   }
 `;
+
+export const Content = styled.div`
+  margin: 2rem 4rem;
+`;

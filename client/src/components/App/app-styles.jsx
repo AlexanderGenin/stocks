@@ -7,7 +7,6 @@ export const Container = styled.div`
 `;
 
 export const InfoSection = styled.div`
-  margin: 1rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

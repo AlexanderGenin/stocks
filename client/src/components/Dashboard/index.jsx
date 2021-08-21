@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Search from "./../Search/index";
 import Heading from "./../Heading/index";
-import { MainContent, Wrapper } from "./dashboard-styles";
+import { MainContent, Content, Wrapper } from "./dashboard-styles";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Summary from "../Summary";
 import Analysis from "../Analysis";
@@ -35,7 +35,9 @@ export class Dashboard extends Component {
               onClick={(ticker) => this.props.onClick(ticker)}
             />
           </Wrapper>
-          {this.props.tickerStats && pages[this.props.selectedItem]}
+          <Content>
+            {this.props.tickerStats && pages[this.props.selectedItem]}
+          </Content>
         </MainContent>
       </>
     );
