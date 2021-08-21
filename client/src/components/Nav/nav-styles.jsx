@@ -44,4 +44,10 @@ export const NavContainer = styled.nav`
       }
     }
   }
+
+  div:last-child {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
 `;
