@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const Table = styled.table`
   width: 14rem;
-  color: ${(props) => props.theme.textColor};
-  /* margin: 1rem auto; */
 
   tr td:first-child {
     text-align: left;
