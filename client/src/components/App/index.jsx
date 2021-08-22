@@ -75,7 +75,7 @@ class App extends Component {
     bgColor: "#111317",
     boxColor: "#1A1E23",
     linesColor: "#90929673",
-    textColor: "#959598",
+    textColor: "#afb2b6",
     extraTextColor: "#959598",
   };
 

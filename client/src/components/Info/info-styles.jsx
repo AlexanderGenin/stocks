@@ -4,7 +4,7 @@ export const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1em 1em;
+  gap: 1rem 1rem;
   grid-template-areas:
     "basic description"
     "map description";
@@ -12,6 +12,11 @@ export const MainGrid = styled.div`
     grid-area: basic;
     display: grid;
     grid-template-columns: repeat(3, 12rem);
+    height: 16rem;
+
+    p {
+      margin: 0.2rem 0;
+    }
   }
   .map {
     grid-area: map;
@@ -20,5 +25,8 @@ export const MainGrid = styled.div`
   .description {
     grid-area: description;
     margin-left: 1rem;
+  }
+  iframe {
+    border: 0;
   }
 `;
