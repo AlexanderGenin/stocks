@@ -26,6 +26,8 @@ export class Info extends Component {
       fullTimeEmployees,
     } = this.props.tickerStats.summaryProfile;
 
+    const googleMapsLookup = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCVQX6Y5KcHdvivfmWdUO0ZP4_m-13X_CI&q=${address1}+${city}`;
+
     return (
       <MainGrid>
         <div className="basic">
@@ -60,6 +62,14 @@ export class Info extends Component {
         </div>
         <div className="map">
           <Title content={"Location"} icon={<Map />} />
+          <iframe
+            title="Google Map"
+            width="450"
+            height="300"
+            loading="lazy"
+            allowfullscreen
+            src={googleMapsLookup}
+          ></iframe>
         </div>
         <div className="description">
           <Title content={"Description"} icon={<DocumentText />} />
