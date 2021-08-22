@@ -4,16 +4,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
-  & > div > table {
-    margin: 1rem;
-  }
 `;
 
-export const Wrapper = styled.div`
+export const WrapperValuation = styled.div`
   border-radius: 15px;
   background-color: ${(props) => props.theme.boxColor};
   padding: 1rem;
+  margin-bottom: 2rem;
+`;
+
+export const WrapperDividends = styled.div`
+  margin-left: 1rem;
 `;
 
 export const Table = styled.table`

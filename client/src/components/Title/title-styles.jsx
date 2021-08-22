@@ -9,7 +9,6 @@ export const H3 = styled.h3`
 `;
 
 export const Wrapper = styled.div`
-  width: 14rem;
   margin: 1rem 0;
   display: flex;
   justify-content: flex-start;
