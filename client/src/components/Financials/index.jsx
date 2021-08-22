@@ -1,14 +1,27 @@
 import React, { Component } from "react";
-import { Container, Table, Wrapper } from "./financials-styles";
+import {
+  Container,
+  Table,
+  Wrapper,
+  WrapperDividends,
+  WrapperValuation,
+} from "./financials-styles";
 import Title from "./../Title/index";
+import { ReactComponent as NoteFavorite } from "../../icons/note-favorite.svg";
+import { ReactComponent as PercentageSquare } from "../../icons/percentage-square.svg";
+import { ReactComponent as FavoriteChart } from "../../icons/favorite-chart.svg";
+import { ReactComponent as PresentationChart } from "../../icons/presentation-chart.svg";
 
 export class Financials extends Component {
   render() {
     return (
       <Container>
         <div>
-          <Wrapper>
-            <Title content={"Valuation Measures"}></Title>
+          <WrapperValuation>
+            <Title
+              content={"Valuation Measures"}
+              icon={<FavoriteChart />}
+            ></Title>
             <Table>
               <tr>
                 <th>Market Cap (intraday)</th>
@@ -47,53 +60,58 @@ export class Financials extends Component {
                 <td>123</td>
               </tr>
             </Table>
-          </Wrapper>
-          <Title content={"Dividends & Splits"} />
-          <Table>
-            <tr>
-              <th>Forward Annual Dividend Rate</th>
-              <td>0.88</td>
-            </tr>
-            <tr>
-              <th>Forward Annual Dividend Yield</th>
-              <td>0.60%</td>
-            </tr>
-            <tr>
-              <th>Trailing Annual Dividend Rate</th>
-              <td>0.83</td>
-            </tr>
-            <tr>
-              <th>Trailing Annual Dividend Yield</th>
-              <td>0.58%</td>
-            </tr>
-            <tr>
-              <th>5 Year Average Dividend Yield</th>
-              <td>1.32</td>
-            </tr>
-            <tr>
-              <th>Payout Ratio 4</th>
-              <td>16.31%</td>
-            </tr>
-            <tr>
-              <th>Dividend Date 3 </th>
-              <td>May 12, 2021</td>
-            </tr>
-            <tr>
-              <th>Ex-Dividend Date 4</th>
-              <td>Aug 05, 2021</td>
-            </tr>
-            <tr>
-              <th>Last Split Factor 2</th>
-              <td>4:1</td>
-            </tr>
-            <tr>
-              <th>Last Split Date 3</th>
-              <td>Aug 30, 2020</td>
-            </tr>
-          </Table>
+          </WrapperValuation>
+          <WrapperDividends>
+            <Title content={"Dividends & Splits"} icon={<PercentageSquare />} />
+            <Table>
+              <tr>
+                <th colSpan={2}>Forward Annual Dividend Rate</th>
+                <td>0.88</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>Forward Annual Dividend Yield</th>
+                <td>0.60%</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>Trailing Annual Dividend Rate</th>
+                <td>0.83</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>Trailing Annual Dividend Yield</th>
+                <td>0.58%</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>5 Year Average Dividend Yield</th>
+                <td>1.32</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>Payout Ratio 4</th>
+                <td>16.31%</td>
+              </tr>
+              <tr>
+                <th>Dividend Date 3 </th>
+                <td colSpan={2}>May 12, 2021</td>
+              </tr>
+              <tr>
+                <th>Ex-Dividend Date 4</th>
+                <td colSpan={2}>Aug 05, 2021</td>
+              </tr>
+              <tr>
+                <th colSpan={2}>Last Split Factor 2</th>
+                <td>4:1</td>
+              </tr>
+              <tr>
+                <th>Last Split Date 3</th>
+                <td colSpan={2}>Aug 30, 2020</td>
+              </tr>
+            </Table>
+          </WrapperDividends>
         </div>
         <div>
-          <Title content={"Financial Highlights"}></Title>
+          <Title
+            content={"Financial Highlights"}
+            icon={<NoteFavorite />}
+          ></Title>
           <Table>
             <caption>Fiscal Year</caption>
             <tr>
@@ -202,7 +220,10 @@ export class Financials extends Component {
           </Table>
         </div>
         <div>
-          <Title content={"Trading Information"}></Title>
+          <Title
+            content={"Trading Information"}
+            icon={<PresentationChart />}
+          ></Title>
           <Table>
             <caption>Stock price History</caption>
             <tr>
