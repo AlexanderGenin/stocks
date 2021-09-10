@@ -1,6 +1,23 @@
 import styled from "styled-components";
 
-export const EarningsTable = styled.table`
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 490px;
+  div {
+    margin-bottom: 1rem;
+  }
+`;
+
+export const Table = styled.table`
   border-collapse: collapse;
 
   tr {
@@ -36,6 +53,11 @@ export const EarningsTable = styled.table`
     border-bottom: solid ${(props) => props.theme.linesColor} 1px;
   }
   .numberOfAnalysts {
-    width: 5rem;
+    width: 3rem;
   }
+`;
+
+export const ChartWrapper = styled.div`
+  width: 350px;
+  height: 250px;
 `;
