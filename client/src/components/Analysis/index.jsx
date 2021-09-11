@@ -3,8 +3,10 @@ import Title from "./../Title/index";
 import { ReactComponent as WalletMoney } from "../../icons/wallet-money.svg";
 import { ReactComponent as StatusUp } from "../../icons/status-up.svg";
 import { ReactComponent as CardReceive } from "../../icons/card-receive.svg";
+import { ReactComponent as TrendUp } from "../../icons/trend-up.svg";
 import { ChartWrapper, Flex, FlexContainer, Table } from "./analysis-styles";
-import RecommendationTrends from "./../RecommendationTrends/index";
+import RecommendationTrends from "./../RecommendationTrends";
+import EarningsTrends from "../EarningsTrends";
 
 export class Analysis extends Component {
   render() {
@@ -62,6 +64,10 @@ export class Analysis extends Component {
                 </tbody>
               </Table>
             </div>
+            <Title content={"Earnings Trends"} icon={<TrendUp />} />
+            <ChartWrapper>
+              <EarningsTrends />
+            </ChartWrapper>
           </Flex>
           <Flex>
             <div>
