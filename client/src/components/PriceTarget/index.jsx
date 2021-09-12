@@ -15,6 +15,7 @@ class PriceTarget extends Component {
         ],
         backgroundColor: this.props.theme.textColor,
         hoverRadius: 4,
+        clip: 20,
       },
       {
         label: "High",
@@ -23,6 +24,7 @@ class PriceTarget extends Component {
         ],
         backgroundColor: this.props.theme.textColor,
         hoverRadius: 4,
+        clip: 20,
       },
       {
         label: "Average",
@@ -30,12 +32,14 @@ class PriceTarget extends Component {
           { x: this.props.stats.financialData.targetMeanPrice, y: 0, r: 8 },
         ],
         backgroundColor: this.props.theme.extraColor,
+        clip: 20,
       },
       {
         label: "Current",
         data: [{ x: this.props.stats.financialData.currentPrice, y: 0, r: 8 }],
         backgroundColor: "transparent",
         borderColor: this.props.theme.mainColor,
+        clip: 20,
       },
     ],
   };

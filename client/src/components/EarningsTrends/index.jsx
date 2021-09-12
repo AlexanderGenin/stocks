@@ -14,6 +14,7 @@ class EarningsTrends extends Component {
           { x: 8, y: 16, r: 10 },
         ],
         backgroundColor: this.props.theme.mainColor,
+        clip: 20,
       },
       {
         label: "Estimate",
@@ -25,11 +26,15 @@ class EarningsTrends extends Component {
         ],
         backgroundColor: "transparent",
         borderColor: this.props.theme.extraColor,
+        clip: 20,
       },
     ],
   };
 
   options = {
+    layout: {
+      padding: 20,
+    },
     responsive: true,
     maintainAspectRatio: false,
     scales: {
