@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
   width: 14rem;
+  margin-bottom: 5rem;
 
   tr td:first-child {
     text-align: left;

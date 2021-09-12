@@ -55,7 +55,11 @@ class EarningsTrends extends Component {
   render() {
     return (
       <>
-        <Bubble data={this.data} options={this.options} />
+        <Bubble
+          data={this.data}
+          options={this.options}
+          style={{ marginLeft: "-20px" }}
+        />
       </>
     );
   }

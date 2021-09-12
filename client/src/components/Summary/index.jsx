@@ -7,6 +7,8 @@ import { ChartsWrapper } from "./../Dashboard/dashboard-styles";
 import ChartBox from "./../ChartBox/index";
 import BuySellDoughnut from "../BuySellDoughnut";
 import FinancialsBar from "../FinancialsBar";
+import Title from "./../Title/index";
+import { ReactComponent as Tag2 } from "../../icons/tag-2.svg";
 
 export class Summary extends Component {
   render() {
@@ -15,6 +17,7 @@ export class Summary extends Component {
         <div>
           <Price current={this.props.tickerStats.price.regularMarketPrice} />
           <Stats stats={this.props.tickerStats} />
+          <Title content={"Price Target"} icon={<Tag2 />} />
           <PriceTarget stats={this.props.tickerStats} />
         </div>
         <ChartsWrapper>

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Bubble } from "react-chartjs-2";
-import Title from "./../Title/index";
-import { ReactComponent as Tag2 } from "../../icons/tag-2.svg";
+
 import { withTheme } from "styled-components";
-import { Wrapper } from "./pricetarget-styles";
 
 class PriceTarget extends Component {
   data = {
@@ -84,15 +82,12 @@ class PriceTarget extends Component {
   render() {
     return (
       <>
-        <Wrapper>
-          <Title content={"Price Target"} icon={<Tag2 />} />
-          <Bubble
-            data={this.data}
-            options={this.options}
-            width={224}
-            height={100}
-          />
-        </Wrapper>
+        <Bubble
+          data={this.data}
+          options={this.options}
+          width={224}
+          height={100}
+        />
       </>
     );
   }

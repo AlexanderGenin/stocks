@@ -4,9 +4,13 @@ import { ReactComponent as WalletMoney } from "../../icons/wallet-money.svg";
 import { ReactComponent as StatusUp } from "../../icons/status-up.svg";
 import { ReactComponent as CardReceive } from "../../icons/card-receive.svg";
 import { ReactComponent as TrendUp } from "../../icons/trend-up.svg";
+import { ReactComponent as Star1 } from "../../icons/star-1.svg";
 import { ChartWrapper, Flex, FlexContainer, Table } from "./analysis-styles";
 import RecommendationTrends from "./../RecommendationTrends";
 import EarningsTrends from "../EarningsTrends";
+import PriceTarget from "../PriceTarget";
+import { ReactComponent as Tag2 } from "../../icons/tag-2.svg";
+import RecommendationRating from "../RecommendationRating";
 
 export class Analysis extends Component {
   render() {
@@ -68,6 +72,10 @@ export class Analysis extends Component {
             <ChartWrapper>
               <EarningsTrends />
             </ChartWrapper>
+            <Title content={"Price Target"} icon={<Tag2 />} />
+            <div>
+              <PriceTarget stats={this.props.tickerStats} />
+            </div>
           </Flex>
           <Flex>
             <div>
@@ -124,6 +132,10 @@ export class Analysis extends Component {
             <ChartWrapper>
               <RecommendationTrends />
             </ChartWrapper>
+            <div>
+              <Title content={"Recommendation Rating"} icon={<Star1 />} />
+              <RecommendationRating />
+            </div>
           </Flex>
         </FlexContainer>
       </>
