@@ -8,7 +8,6 @@ class Price extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.ticker);
     this.interval = setInterval(async () => {
       if (this.props.ticker) {
         const { data: tickerStats } = await getTickerStats(this.props.ticker);

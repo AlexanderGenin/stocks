@@ -150,13 +150,17 @@ class App extends Component {
   };
 
   getTickers = async (value) => {
-    const { data: matchingTickers } = await getTickers(value);
-    const mapped = matchingTickers;
-    let tickerWithoutDots = mapped.filter((el) => !el.ticker.includes("."));
-    let tickerWithDots = mapped.filter((el) => el.ticker.includes("."));
-    this.setState({
-      matchingTickers: [...tickerWithoutDots, ...tickerWithDots],
-    });
+    try {
+      const { data: matchingTickers } = await getTickers(value);
+      const mapped = matchingTickers;
+      let tickerWithoutDots = mapped.filter((el) => !el.ticker.includes("."));
+      let tickerWithDots = mapped.filter((el) => el.ticker.includes("."));
+      this.setState({
+        matchingTickers: [...tickerWithoutDots, ...tickerWithDots],
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   clearData = () => {
