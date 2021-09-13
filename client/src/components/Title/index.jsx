@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { H3, Wrapper } from "./title-styles";
 
 export default function Title({ content, icon }) {

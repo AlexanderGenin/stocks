@@ -59,7 +59,6 @@ class RecommendationTrends extends Component {
         display: false,
       },
     },
-    responsive: true,
     scales: {
       yAxes: [
         {

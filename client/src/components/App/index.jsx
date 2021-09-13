@@ -92,7 +92,6 @@ class App extends Component {
   };
 
   handleItemSelect = (itemIndex) => {
-    console.log(itemIndex);
     this.setState({
       selectedItem: itemIndex,
     });
@@ -103,8 +102,6 @@ class App extends Component {
       // Fetch the necessary ticker data and set the App state
       const [{ data: tickerStats }, { data: tickerHistory }] =
         await Promise.all([getTickerStats(ticker), getTickerHistory(ticker)]);
-
-      console.log(tickerStats, tickerHistory);
 
       this.setState({
         tickerStats,

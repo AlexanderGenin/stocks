@@ -3,7 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import React, { Component } from "react";
 import Title from "./../Title/index";
 import { ReactComponent as Graph } from "../../icons/graph.svg";
-import { ThemeConsumer, withTheme } from "styled-components";
+import { withTheme } from "styled-components";
 
 class BuySellDoughnut extends Component {
   recs = {
