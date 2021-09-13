@@ -16,7 +16,6 @@ export class Dashboard extends Component {
       <Analysis {...this.props} />,
       <Info {...this.props} />,
     ];
-
     return (
       <>
         <MainContent>

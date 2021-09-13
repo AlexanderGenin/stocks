@@ -5,15 +5,22 @@ import mongoUtil from "../utilities/mongoUtil.js";
 const router = express.Router();
 
 router.get("/:value/matching", async (req, res) => {
+  const regex = new RegExp("^" + req.params.value, "i");
   const matchingTickers = await mongoUtil
     .getDb()
     .collection("tickers")
     .find({
-      Ticker: { $regex: new RegExp("^" + req.params.value) },
+      $or: [
+        {
+          ticker: { $regex: regex },
+        },
+      ],
     })
-    .sort({ Ticker: 1 })
+    .sort({ ticker: 1 })
     .limit(5)
     .toArray();
+
+  if (!matchingTickers) res.status(404).send("Tickers not found");
 
   res.send(matchingTickers);
 });

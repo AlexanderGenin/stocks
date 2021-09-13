@@ -13,10 +13,7 @@ class Search extends Component {
     showResults: false,
   };
 
-  constructor(props) {
-    super(props);
-    this.wrapperRef = React.createRef();
-  }
+  wrapperRef = React.createRef();
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
@@ -26,41 +23,43 @@ class Search extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+  handleClickOutside = (e) => {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
       this.setState({ showResults: false });
     }
   };
 
   render() {
+    const { placeholder, options, onSubmit, onChange, onClick } = this.props;
+
     return (
       <SearchContainer ref={this.wrapperRef}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            this.props.onSubmit(e);
+            onSubmit(e);
           }}
         >
           <SearchInput
             type="text"
             name="query"
-            placeholder={this.props.placeholder}
-            onChange={this.props.onChange}
+            placeholder={placeholder}
+            onChange={onChange}
             onClick={() => this.setState({ showResults: true })}
           />
           {this.state.showResults ? (
             <Dropdown>
-              {this.props.options.map((option, key) => (
+              {options.map(({ ticker, name }, index) => (
                 <Option
-                  key={key}
+                  key={index}
                   onClick={() => {
-                    this.props.onClick(option.Ticker);
+                    onClick(ticker);
                     this.setState({ showResults: false });
                   }}
                 >
                   <div>
-                    <p>{option.Ticker}</p>
-                    <p>{option.Name}</p>
+                    <p>{ticker}</p>
+                    <p>{name}</p>
                   </div>
                 </Option>
               ))}

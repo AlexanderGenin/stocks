@@ -48,7 +48,6 @@ export const Dropdown = styled.div`
   border-radius: 7px;
   margin-top: 0.2rem;
   position: absolute;
-  /* display: none; */
 `;
 
 export const Option = styled.div`

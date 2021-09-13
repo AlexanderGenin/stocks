@@ -152,8 +152,8 @@ class App extends Component {
   getTickers = async (value) => {
     const { data: matchingTickers } = await getTickers(value);
     const mapped = matchingTickers;
-    let tickerWithoutDots = mapped.filter((el) => !el.Ticker.includes("."));
-    let tickerWithDots = mapped.filter((el) => el.Ticker.includes("."));
+    let tickerWithoutDots = mapped.filter((el) => !el.ticker.includes("."));
+    let tickerWithDots = mapped.filter((el) => el.ticker.includes("."));
     this.setState({
       matchingTickers: [...tickerWithoutDots, ...tickerWithDots],
     });
