@@ -22,7 +22,7 @@ class App extends Component {
     ticker: "",
     typingTimeout: 0,
     matchingTickers: [],
-    prevPrice: null,
+    price: null,
     tickerStats: null,
     tickerHistory: null,
     chartData: null,
@@ -81,12 +81,13 @@ class App extends Component {
 
   handleSubmit = async (e) => {
     this.clearData();
-    const ticker = e.target.query.value;
-    await this.getTicker(ticker);
+    this.setState({ ticker: e.target.query.value });
+    await this.getTicker(this.state.ticker);
   };
 
   handleClick = async (ticker) => {
     this.clearData();
+    this.setState({ ticker });
     await this.getTicker(ticker);
   };
 
@@ -99,7 +100,7 @@ class App extends Component {
 
   getTicker = async (ticker) => {
     try {
-      // Fetch the necessary ticker data for setting the App state
+      // Fetch the necessary ticker data and set the App state
       const [{ data: tickerStats }, { data: tickerHistory }] =
         await Promise.all([getTickerStats(ticker), getTickerHistory(ticker)]);
 
@@ -160,7 +161,7 @@ class App extends Component {
 
   clearData = () => {
     this.setState({
-      prevPrice: null,
+      price: null,
       tickerStats: null,
       tickerHistory: null,
       chartData: null,

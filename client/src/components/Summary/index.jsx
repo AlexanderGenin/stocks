@@ -15,7 +15,14 @@ export class Summary extends Component {
     return (
       <InfoSection>
         <div>
-          <Price current={this.props.tickerStats.price.regularMarketPrice} />
+          <Price
+            ticker={this.props.ticker}
+            current={this.props.tickerStats.price.regularMarketPrice}
+            changePercent={
+              this.props.tickerStats.price.regularMarketChangePercent
+            }
+            change={this.props.tickerStats.price.regularMarketChange}
+          />
           <Stats stats={this.props.tickerStats} />
           <Title content={"Price Target"} icon={<Tag2 />} />
           <PriceTarget stats={this.props.tickerStats} />

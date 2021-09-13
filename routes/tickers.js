@@ -26,7 +26,6 @@ router.get("/:ticker", async (req, res) => {
       "summaryDetail",
       "earnings",
       "calendarEvents",
-      "upgradeDowngradeHistory",
       "price",
       "defaultKeyStatistics",
       "summaryProfile",
