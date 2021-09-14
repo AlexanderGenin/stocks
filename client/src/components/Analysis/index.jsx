@@ -11,6 +11,8 @@ import EarningsTrends from "../EarningsTrends";
 import PriceTarget from "../PriceTarget";
 import { ReactComponent as Tag2 } from "../../icons/tag-2.svg";
 import RecommendationRating from "../RecommendationRating";
+import EarningsEstimate from "../EarningsEstimate";
+import RevenueEstimate from "../RevenueEstimate";
 
 export class Analysis extends Component {
   render() {
@@ -20,57 +22,13 @@ export class Analysis extends Component {
           <Flex>
             <div>
               <Title content={"Earnings Estimate"} icon={<WalletMoney />} />
-              <Table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th className="numberOfAnalysts">Num. of analysts</th>
-                    <th>
-                      <div className="avg">Avg.</div>
-                    </th>
-                    <th>
-                      <div className="low">Low</div>
-                    </th>
-                    <th>
-                      <div className="high">High</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Current Qtr. (Jun 2021)</th>
-                    <td className="numberOfAnalysts">28</td>
-                    <td>1</td>
-                    <td>0.82</td>
-                    <td>1.16</td>
-                  </tr>
-                  <tr>
-                    <th>Next Qtr. (Sep 2021)</th>
-                    <td className="numberOfAnalysts">27</td>
-                    <td>1.11</td>
-                    <td>0.83</td>
-                    <td>1.31</td>
-                  </tr>
-                  <tr>
-                    <th>Current Year (2021)</th>
-                    <td className="numberOfAnalysts">40</td>
-                    <td>5.18</td>
-                    <td>4.74</td>
-                    <td>5.6</td>
-                  </tr>
-                  <tr>
-                    <th>Next Year (2022)</th>
-                    <td className="numberOfAnalysts">40</td>
-                    <td>5.34</td>
-                    <td>4.77</td>
-                    <td>6.11</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <EarningsEstimate
+                earnings={this.props.tickerStats.calendarEvents.earnings}
+              />
             </div>
             <Title content={"Earnings Trends"} icon={<TrendUp />} />
             <ChartWrapper>
-              <EarningsTrends />
+              <EarningsTrends earnings={this.props.tickerStats.earnings} />
             </ChartWrapper>
             <Title content={"Price Target"} icon={<Tag2 />} />
             <div>
@@ -80,61 +38,21 @@ export class Analysis extends Component {
           <Flex>
             <div>
               <Title content={"Revenue Estimate"} icon={<CardReceive />} />
-              <Table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th className="numberOfAnalysts">Num. of analysts</th>
-                    <th>
-                      <div className="avg">Avg.</div>
-                    </th>
-                    <th>
-                      <div className="low">Low</div>
-                    </th>
-                    <th>
-                      <div className="high">High</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Current Qtr. (Jun 2021)</th>
-                    <td className="numberOfAnalysts">28</td>
-                    <td>72.93B</td>
-                    <td>65.68B</td>
-                    <td>77.15B</td>
-                  </tr>
-                  <tr>
-                    <th>Next Qtr. (Sep 2021)</th>
-                    <td className="numberOfAnalysts">27</td>
-                    <td>1.11</td>
-                    <td>0.83</td>
-                    <td>1.31</td>
-                  </tr>
-                  <tr>
-                    <th>Current Year (2021)</th>
-                    <td className="numberOfAnalysts">40</td>
-                    <td>5.18</td>
-                    <td>4.74</td>
-                    <td>5.6</td>
-                  </tr>
-                  <tr>
-                    <th>Next Year (2022)</th>
-                    <td className="numberOfAnalysts">40</td>
-                    <td>5.34</td>
-                    <td>4.77</td>
-                    <td>6.11</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <RevenueEstimate
+                revenue={this.props.tickerStats.calendarEvents.earnings}
+              />
             </div>
             <Title content={"Recommendation Trends"} icon={<StatusUp />} />
             <ChartWrapper>
-              <RecommendationTrends />
+              <RecommendationTrends
+                recommendationTrend={this.props.tickerStats.recommendationTrend}
+              />
             </ChartWrapper>
             <div>
               <Title content={"Recommendation Rating"} icon={<Star1 />} />
-              <RecommendationRating />
+              <RecommendationRating
+                rating={this.props.tickerStats.financialData.recommendationMean}
+              />
             </div>
           </Flex>
         </FlexContainer>

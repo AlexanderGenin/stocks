@@ -61,7 +61,7 @@ class RecommendationRating extends Component {
   }
 
   canvasRef = React.createRef();
-  draw(canvas, rating = 1.3) {
+  draw(canvas, rating) {
     let color;
     const PXS_IN_SEGMENT = 65;
     if (rating < 1.5) {
@@ -139,11 +139,11 @@ class RecommendationRating extends Component {
   }
 
   componentDidMount() {
-    this.draw(this.canvasRef);
+    this.draw(this.canvasRef, this.props.rating);
   }
 
   componentDidUpdate() {
-    this.draw(this.canvasRef);
+    this.draw(this.canvasRef, this.props.rating);
   }
 
   render() {
