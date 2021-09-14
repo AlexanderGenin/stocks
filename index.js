@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoUtil from "./utilities/mongoUtil.js";
 import tickers from "./routes/tickers.js";
+import * as path from "path";
 
 dotenv.config();
 
@@ -15,4 +16,12 @@ mongoUtil.connectToServer(function () {
   app.listen(PORT, () =>
     console.log(`App has been started on port ${PORT}...`)
   );
+});
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/../client/build/index.html"));
 });
