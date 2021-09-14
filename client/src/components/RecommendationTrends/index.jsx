@@ -58,7 +58,12 @@ class RecommendationTrends extends Component {
       borderRadius: 4,
       plugins: {
         legend: {
-          display: false,
+          position: "right",
+          reverse: true,
+          labels: {
+            pointStyle: "rectRounded",
+            usePointStyle: true,
+          },
         },
       },
       scales: {

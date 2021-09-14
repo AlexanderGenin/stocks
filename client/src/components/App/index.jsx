@@ -62,6 +62,15 @@ class App extends Component {
         legend: {
           display: false,
         },
+        title: {
+          display: true,
+          padding: 0,
+          text: "1-year price change",
+          font: {
+            family: "'Nunito', 'Arial', sans-serif",
+            size: 18,
+          },
+        },
       },
     },
   };

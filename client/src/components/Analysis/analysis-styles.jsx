@@ -58,6 +58,6 @@ export const Table = styled.table`
 `;
 
 export const ChartWrapper = styled.div`
-  width: 350px;
-  height: 250px;
+  width: 450px;
+  height: 300px;
 `;

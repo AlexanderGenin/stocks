@@ -15,10 +15,10 @@ class EarningsTrends extends Component {
         {
           label: "Actual",
           data: [
-            { x: 2, y: quarterly[0].actual, r: 10 },
-            { x: 4, y: quarterly[1].actual, r: 10 },
-            { x: 6, y: quarterly[2].actual, r: 10 },
-            { x: 8, y: quarterly[3].actual, r: 10 },
+            { x: quarterly[0].date, y: quarterly[0].actual, r: 10 },
+            { x: quarterly[1].date, y: quarterly[1].actual, r: 10 },
+            { x: quarterly[2].date, y: quarterly[2].actual, r: 10 },
+            { x: quarterly[3].date, y: quarterly[3].actual, r: 10 },
           ],
           backgroundColor: this.props.theme.mainColor,
           clip: 20,
@@ -26,11 +26,15 @@ class EarningsTrends extends Component {
         {
           label: "Estimate",
           data: [
-            { x: 2, y: quarterly[0].estimate, r: 10 },
-            { x: 4, y: quarterly[1].estimate, r: 10 },
-            { x: 6, y: quarterly[2].estimate, r: 10 },
-            { x: 8, y: quarterly[3].estimate, r: 10 },
-            { x: 10, y: currentQuarterEstimate, r: 10 },
+            { x: quarterly[0].date, y: quarterly[0].estimate, r: 10 },
+            { x: quarterly[1].date, y: quarterly[1].estimate, r: 10 },
+            { x: quarterly[2].date, y: quarterly[2].estimate, r: 10 },
+            { x: quarterly[3].date, y: quarterly[3].estimate, r: 10 },
+            {
+              x: currentQuarterEstimateDate + currentQuarterEstimateYear,
+              y: currentQuarterEstimate,
+              r: 10,
+            },
           ],
           backgroundColor: "transparent",
           borderColor: this.props.theme.extraColor,
@@ -46,17 +50,26 @@ class EarningsTrends extends Component {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
+        xAxes: {
+          type: "category",
+          labels: [
+            ...quarterly.map((el) => el.date),
+            currentQuarterEstimateDate + currentQuarterEstimateYear,
+          ],
+        },
+        yAxes: {
+          ticks: {
+            beginAtZero: true,
           },
-        ],
+        },
       },
       plugins: {
         legend: {
-          display: false,
+          position: "right",
+          labels: {
+            pointStyle: "rectRounded",
+            usePointStyle: true,
+          },
         },
       },
     };

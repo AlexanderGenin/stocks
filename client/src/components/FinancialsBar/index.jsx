@@ -12,6 +12,8 @@ class FinancialsBar extends Component {
     this.props.stats &&
     this.props.stats.earnings.financialsChart.yearly.map((el) => el.earnings);
 
+  year = Date.now();
+
   data = {
     labels: ["2017", "2018", "2019", "2020"],
     datasets: [
@@ -37,7 +39,11 @@ class FinancialsBar extends Component {
     borderRadius: 4,
     plugins: {
       legend: {
-        display: false,
+        display: "top",
+        labels: {
+          pointStyle: "rectRounded",
+          usePointStyle: true,
+        },
       },
     },
     scales: {

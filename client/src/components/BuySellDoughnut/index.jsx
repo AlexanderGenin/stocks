@@ -45,8 +45,6 @@ class BuySellDoughnut extends Component {
         labels: {
           boxWidth: 15,
           boxHeight: 15,
-          // usePointStyle: true,
-          // pointStyle: "triangle",
         },
       },
     },
