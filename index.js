@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoUtil from "./utilities/mongoUtil.js";
 import tickers from "./routes/tickers.js";
-import * as path from "path";
+import path from "path";
 
 dotenv.config();
 
@@ -16,6 +16,9 @@ mongoUtil.connectToServer(function () {
   app.listen(PORT, () =>
     console.log(`App has been started on port ${PORT}...`)
   );
+
+  const __dirname = path.resolve();
+
   // Serve static files from the React frontend app
   app.use(express.static(path.join(__dirname, "../client/build")));
 
