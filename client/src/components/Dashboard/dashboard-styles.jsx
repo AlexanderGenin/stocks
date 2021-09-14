@@ -60,3 +60,9 @@ export const ChartsWrapper = styled.div`
 export const Content = styled.div`
   margin: 2rem 4rem;
 `;
+
+export const ButtonAndSearch = styled.div`
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+`;
