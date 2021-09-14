@@ -23,7 +23,7 @@ export default function EarningsEstimate({ earnings }) {
       </thead>
       <tbody>
         <tr>
-          <th>Current Qtr. (Sep 2021)</th>
+          <th>Current Quarter</th>
           <td className="numberOfAnalysts">-</td>
           <td>{toFixed(earningsAverage) || "N/A"}</td>
           <td>{toFixed(earningsLow) || "N/A"}</td>

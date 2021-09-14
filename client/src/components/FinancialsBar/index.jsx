@@ -5,62 +5,59 @@ import { ReactComponent as Chart } from "../../icons/chart.svg";
 import { withTheme } from "styled-components";
 
 class FinancialsBar extends Component {
-  revenue =
-    this.props.stats &&
-    this.props.stats.earnings.financialsChart.yearly.map((el) => el.revenue);
-  earnings =
-    this.props.stats &&
-    this.props.stats.earnings.financialsChart.yearly.map((el) => el.earnings);
-
-  year = Date.now();
-
-  data = {
-    labels: ["2017", "2018", "2019", "2020"],
-    datasets: [
-      {
-        label: "Revenue",
-        data: this.revenue,
-        backgroundColor: this.props.theme.mainColor,
-        borderWidth: 0,
-        barPercentage: 0.8,
+  render() {
+    const {
+      earnings: {
+        financialsChart: { yearly: financials },
       },
-      {
-        label: "Earnings",
-        data: this.earnings,
-        backgroundColor: this.props.theme.extraColor,
-        borderWidth: 0,
-        barPercentage: 0.8,
-      },
-    ],
-  };
+    } = this.props.stats;
 
-  options = {
-    categoryPercentage: 0.6,
-    borderRadius: 4,
-    plugins: {
-      legend: {
-        display: "top",
-        labels: {
-          pointStyle: "rectRounded",
-          usePointStyle: true,
-        },
-      },
-    },
-    scales: {
-      yAxes: [
+    const data = {
+      labels: financials.map((el) => el.date),
+      datasets: [
         {
-          ticks: {
-            beginAtZero: true,
-          },
+          label: "Revenue",
+          data: financials.map((el) => el.revenue),
+          backgroundColor: this.props.theme.mainColor,
+          borderWidth: 0,
+          barPercentage: 0.8,
+        },
+        {
+          label: "Earnings",
+          data: financials.map((el) => el.earnings),
+          backgroundColor: this.props.theme.extraColor,
+          borderWidth: 0,
+          barPercentage: 0.8,
         },
       ],
-    },
-  };
-  render() {
+    };
+
+    const options = {
+      categoryPercentage: 0.6,
+      borderRadius: 4,
+      plugins: {
+        legend: {
+          display: "top",
+          labels: {
+            pointStyle: "rectRounded",
+            usePointStyle: true,
+          },
+        },
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    };
     return (
       <>
         <Title content={"Financials"} icon={<Chart />} />
-        <Bar data={this.data} options={this.options} height={200} />
+        <Bar data={data} options={options} height={200} />
       </>
     );
   }

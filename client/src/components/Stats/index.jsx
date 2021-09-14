@@ -3,7 +3,6 @@ import {
   numberWithCommas,
   shortenNumber,
   toFixed,
-  toLocaleString,
   toPercentages,
 } from "../../utilities";
 import { Table } from "./stats-styles";

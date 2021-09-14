@@ -44,8 +44,27 @@ export function formateDate(date) {
   ];
 
   const d = new Date(date);
-  const month = monthNames[d.getMonth()];
+  const month = getMonthShortName(d);
   const dateNum = d.getDate();
   const year = d.getYear();
   return `${month} ${dateNum}, ${year}`;
+}
+
+export function getMonthShortName(date) {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return monthNames[date.getMonth()];
 }

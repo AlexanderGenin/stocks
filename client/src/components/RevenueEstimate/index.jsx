@@ -23,7 +23,7 @@ export default function RevenueEstimate({ revenue }) {
       </thead>
       <tbody>
         <tr>
-          <th>Current Qtr. (Sep 2021)</th>
+          <th>Current Quarter</th>
           <td className="numberOfAnalysts">-</td>
           <td>{shortenNumber(revenueAverage) || "N/A"}</td>
           <td>{shortenNumber(revenueLow) || "N/A"}</td>

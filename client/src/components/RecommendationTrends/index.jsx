@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import { withTheme } from "styled-components";
+import { getMonthShortName } from "../../utilities";
 
 class RecommendationTrends extends Component {
   render() {
     const { trend } = this.props.recommendationTrend;
     const data = {
-      labels: ["Jun", "Jul", "Aug", "Sep"],
+      labels: trend
+        // Convert period values ['0m', '-1m', '-2m', '-3m'] to month names ['Sep', 'Aug', 'Jul', 'Jun']
+        .map((el) => {
+          const d = new Date();
+          return getMonthShortName(
+            new Date(d.setMonth(d.getMonth() + +el.period.slice(0, -1)))
+          );
+        })
+        .reverse(),
       datasets: [
         {
           label: "Sell",
