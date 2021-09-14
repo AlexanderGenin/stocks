@@ -5,7 +5,7 @@ import { getMonthShortName } from "../../utilities";
 
 class RecommendationTrends extends Component {
   render() {
-    const { trend } = this.props.recommendationTrend;
+    const { trend } = this.props.recommendationTrend || {};
     const data = {
       labels: trend
         // Convert period values ['0m', '-1m', '-2m', '-3m'] to month names ['Sep', 'Aug', 'Jul', 'Jun']

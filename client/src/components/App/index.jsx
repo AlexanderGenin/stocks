@@ -65,7 +65,7 @@ class App extends Component {
         title: {
           display: true,
           padding: 0,
-          text: "1-year price change",
+          text: "1-year stock price change",
           font: {
             family: "'Nunito', 'Arial', sans-serif",
             size: 18,

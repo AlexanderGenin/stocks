@@ -9,7 +9,7 @@ class EarningsTrends extends Component {
       currentQuarterEstimate,
       currentQuarterEstimateDate,
       currentQuarterEstimateYear,
-    } = this.props.earnings.earningsChart;
+    } = this.props.earnings.earningsChart || {};
     const data = {
       datasets: [
         {

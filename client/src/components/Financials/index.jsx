@@ -24,7 +24,7 @@ export class Financials extends Component {
       defaultKeyStatistics,
       calendarEvents,
       financialData,
-    } = this.props.tickerStats;
+    } = this.props.tickerStats || {};
 
     const {
       marketCap,

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { getTickerStats } from "../../services/tickerService";
-import { PriceText, PriceContainer, PriceChange } from "./price-styles";
+import {
+  PriceText,
+  PriceContainer,
+  PriceChange,
+  Currency,
+} from "./price-styles";
 
 class Price extends Component {
   state = {
@@ -27,6 +32,9 @@ class Price extends Component {
     const addPlus = Math.sign(this.state.change) === -1 ? "" : "+";
     return (
       <PriceContainer>
+        <Currency>
+          Currency: {this.state.currencySymbol} ({this.state.currency})
+        </Currency>
         <PriceText>{this.state.current.toFixed(2)}</PriceText>
         <PriceChange>
           {addPlus + this.state.change.toFixed(2)} (

@@ -10,7 +10,7 @@ class FinancialsBar extends Component {
       earnings: {
         financialsChart: { yearly: financials },
       },
-    } = this.props.stats;
+    } = this.props.stats || {};
 
     const data = {
       labels: financials.map((el) => el.date),

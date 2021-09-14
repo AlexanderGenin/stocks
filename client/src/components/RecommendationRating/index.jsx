@@ -139,10 +139,13 @@ class RecommendationRating extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.rating) return;
     this.draw(this.canvasRef, this.props.rating);
   }
 
   componentDidUpdate() {
+    if (!this.props.rating) return;
+
     this.draw(this.canvasRef, this.props.rating);
   }
 

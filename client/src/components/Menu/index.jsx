@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Logo, Sidebar, Author, Social } from "./sidebar-styles";
-import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaGithub, FaVk } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import Nav from "../Nav";
 
 export class Menu extends Component {
   render() {
-    const { items, onItemSelect, selectedItem } = this.props;
+    const { items, onItemSelect, selectedItem } = this.props || {};
 
     return (
       <Sidebar>
@@ -43,6 +43,13 @@ export class Menu extends Component {
                 rel="noreferrer"
               >
                 <FaFacebookF />
+              </a>
+              <a
+                href="https://www.vk.com/alex.genin"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaVk />
               </a>
             </Social>
           </IconContext.Provider>

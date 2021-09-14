@@ -17,6 +17,8 @@ export class Summary extends Component {
         <div>
           <Price
             ticker={this.props.ticker}
+            currency={this.props.tickerStats.price.currency}
+            currencySymbol={this.props.tickerStats.price.currencySymbol}
             current={this.props.tickerStats.price.regularMarketPrice}
             changePercent={
               this.props.tickerStats.price.regularMarketChangePercent

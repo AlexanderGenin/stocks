@@ -30,7 +30,8 @@ class Search extends Component {
   };
 
   render() {
-    const { placeholder, options, onSubmit, onChange, onClick } = this.props;
+    const { placeholder, options, onSubmit, onChange, onClick } =
+      this.props || {};
 
     return (
       <SearchContainer ref={this.wrapperRef}>
