@@ -1,4 +1,5 @@
 import React from "react";
+import { toFixed } from "../../utilities";
 import { Table } from "../Analysis/analysis-styles";
 
 export default function EarningsEstimate({ earnings }) {
@@ -22,13 +23,13 @@ export default function EarningsEstimate({ earnings }) {
       </thead>
       <tbody>
         <tr>
-          <th>Current Qtr. (Jun 2021)</th>
+          <th>Current Qtr. (Sep 2021)</th>
           <td className="numberOfAnalysts">-</td>
-          <td>{earningsAverage || "-"}</td>
-          <td>{earningsLow || "-"}</td>
-          <td>{earningsHigh || "-"}</td>
+          <td>{toFixed(earningsAverage) || "N/A"}</td>
+          <td>{toFixed(earningsLow) || "N/A"}</td>
+          <td>{toFixed(earningsHigh) || "N/A"}</td>
         </tr>
-        <tr>
+        {/* <tr>
           <th>Next Qtr. (Sep 2021)</th>
           <td className="numberOfAnalysts">-</td>
           <td>-</td>
@@ -48,7 +49,7 @@ export default function EarningsEstimate({ earnings }) {
           <td>-</td>
           <td>-</td>
           <td>-</td>
-        </tr>
+        </tr> */}
       </tbody>
     </Table>
   );

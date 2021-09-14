@@ -1,114 +1,60 @@
 import React, { Component } from "react";
-import { RiQuestionLine } from "react-icons/ri";
+import {
+  numberWithCommas,
+  shortenNumber,
+  toFixed,
+  toLocaleString,
+  toPercentages,
+} from "../../utilities";
 import { Table } from "./stats-styles";
 
 export class Stats extends Component {
-  shortenNumber(labelValue) {
-    return Math.abs(Number(labelValue)) >= 1.0e12
-      ? (Math.abs(Number(labelValue)) / 1.0e12).toFixed(2) + "T"
-      : Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
-      : Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
-      : Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
-      : Math.abs(Number(labelValue));
-  }
-
-  toPercentages(number) {
-    return (number * 100).toFixed(2) + "%";
-  }
-
   render() {
-    const stats = this.props.stats;
+    const { summaryDetail, defaultKeyStatistics, financialData } =
+      this.props.stats || {};
+    const { marketCap, trailingPE, forwardPE, dividendYield, volume } =
+      summaryDetail;
+    const { enterpriseValue, trailingEps, enterpriseToEbitda } =
+      defaultKeyStatistics;
+    const { returnOnEquity } = financialData;
     return (
       <Table>
         <tbody>
           <tr>
-            <td>
-              Market Cap&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>{this.shortenNumber(stats.summaryDetail.marketCap)}</td>
+            <td>Market Cap&nbsp;</td>
+            <td>{shortenNumber(marketCap)}</td>
           </tr>
           <tr>
-            <td>
-              EV&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {this.shortenNumber(stats.defaultKeyStatistics.enterpriseValue)}
-            </td>
+            <td>EV&nbsp;</td>
+            <td>{shortenNumber(enterpriseValue)}</td>
           </tr>
           <tr>
-            <td>
-              Trailing P/E&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.summaryDetail.trailingPE &&
-                stats.summaryDetail.trailingPE.toFixed(2)}
-            </td>
+            <td>Trailing P/E&nbsp;</td>
+            <td>{toFixed(trailingPE) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              Forward P/E&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.summaryDetail.forwardPE &&
-                stats.summaryDetail.forwardPE.toFixed(2)}
-            </td>
+            <td>Forward P/E&nbsp;</td>
+            <td>{toFixed(forwardPE) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              EPS&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.defaultKeyStatistics.trailingEps &&
-                stats.defaultKeyStatistics.trailingEps.toFixed(2)}
-            </td>
+            <td>EPS&nbsp;</td>
+            <td>{toFixed(trailingEps) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              EV/EBITDA&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.defaultKeyStatistics.enterpriseToEbitda &&
-                stats.defaultKeyStatistics.enterpriseToEbitda.toFixed(2)}
-            </td>
+            <td>EV/EBITDA&nbsp;</td>
+            <td>{toFixed(enterpriseToEbitda) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              ROE&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.financialData.returnOnEquity &&
-                this.toPercentages(stats.financialData.returnOnEquity)}
-            </td>
+            <td>ROE&nbsp;</td>
+            <td>{toPercentages(returnOnEquity) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              Dividend yield&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.summaryDetail.dividendYield &&
-                this.toPercentages(stats.summaryDetail.dividendYield)}
-            </td>
+            <td>Dividend yield&nbsp;</td>
+            <td>{toPercentages(dividendYield) || "NA"}</td>
           </tr>
           <tr>
-            <td>
-              Volume&nbsp;
-              <RiQuestionLine />
-            </td>
-            <td>
-              {stats.summaryDetail.volume &&
-                stats.summaryDetail.volume.toLocaleString()}
-            </td>
+            <td>Volume&nbsp;</td>
+            <td>{numberWithCommas(volume) || "NA"}</td>
           </tr>
         </tbody>
       </Table>

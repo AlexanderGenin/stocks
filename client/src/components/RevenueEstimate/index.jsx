@@ -1,4 +1,5 @@
 import React from "react";
+import { shortenNumber } from "../../utilities";
 import { Table } from "../Analysis/analysis-styles";
 
 export default function RevenueEstimate({ revenue }) {
@@ -22,13 +23,13 @@ export default function RevenueEstimate({ revenue }) {
       </thead>
       <tbody>
         <tr>
-          <th>Current Qtr. (Jun 2021)</th>
+          <th>Current Qtr. (Sep 2021)</th>
           <td className="numberOfAnalysts">-</td>
-          <td>{revenueAverage || "-"}</td>
-          <td>{revenueLow || "-"}</td>
-          <td>{revenueHigh || "-"}</td>
+          <td>{shortenNumber(revenueAverage) || "N/A"}</td>
+          <td>{shortenNumber(revenueLow) || "N/A"}</td>
+          <td>{shortenNumber(revenueHigh) || "N/A"}</td>
         </tr>
-        <tr>
+        {/* <tr>
           <th>Next Qtr. (Sep 2021)</th>
           <td className="numberOfAnalysts">-</td>
           <td>-</td>
@@ -48,7 +49,7 @@ export default function RevenueEstimate({ revenue }) {
           <td>-</td>
           <td>-</td>
           <td>-</td>
-        </tr>
+        </tr> */}
       </tbody>
     </Table>
   );

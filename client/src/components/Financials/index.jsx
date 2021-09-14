@@ -10,6 +10,12 @@ import { ReactComponent as NoteFavorite } from "../../icons/note-favorite.svg";
 import { ReactComponent as PercentageSquare } from "../../icons/percentage-square.svg";
 import { ReactComponent as FavoriteChart } from "../../icons/favorite-chart.svg";
 import { ReactComponent as PresentationChart } from "../../icons/presentation-chart.svg";
+import {
+  formateDate,
+  shortenNumber,
+  toFixed,
+  toPercentages,
+} from "../../utilities";
 
 export class Financials extends Component {
   render() {
@@ -100,39 +106,39 @@ export class Financials extends Component {
             <Table>
               <tr>
                 <th>Market Cap (intraday)</th>
-                <td>{marketCap || "N/A"}</td>
+                <td>{shortenNumber(marketCap) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Enterprise Value</th>
-                <td>{enterpriseValue || "N/A"}</td>
+                <td>{shortenNumber(enterpriseValue) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Trailing P/E</th>
-                <td>{trailingPE || "N/A"}</td>
+                <td>{toFixed(trailingPE) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Forward P/E</th>
-                <td>{forwardPE || "N/A"}</td>
+                <td>{toFixed(forwardPE) || "N/A"}</td>
               </tr>
               <tr>
                 <th>PEG Ratio (5 yr expected)</th>
-                <td>{pegRatio || "N/A"}</td>
+                <td>{toFixed(pegRatio) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Price/Sales (ttm)</th>
-                <td>{priceToSalesTrailing12Months || "N/A"}</td>
+                <td>{toFixed(priceToSalesTrailing12Months) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Price/Book (mrq)</th>
-                <td>{priceToBook || "N/A"}</td>
+                <td>{toFixed(priceToBook) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Enterprise Value/Revenue</th>
-                <td>{enterpriseToRevenue || "N/A"}</td>
+                <td>{toFixed(enterpriseToRevenue) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Enterprise Value/EBITDA</th>
-                <td>{enterpriseToEbitda || "N/A"}</td>
+                <td>{toFixed(enterpriseToEbitda) || "N/A"}</td>
               </tr>
             </Table>
           </WrapperValuation>
@@ -141,35 +147,35 @@ export class Financials extends Component {
             <Table>
               <tr>
                 <th colSpan={2}>Forward Annual Dividend Rate</th>
-                <td>{dividendRate || "N/A"}</td>
+                <td>{toFixed(dividendRate) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>Forward Annual Dividend Yield</th>
-                <td>{dividendYield || "N/A"}</td>
+                <td>{toPercentages(dividendYield) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>Trailing Annual Dividend Rate</th>
-                <td>{trailingAnnualDividendRate || "N/A"}</td>
+                <td>{toFixed(trailingAnnualDividendRate) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>Trailing Annual Dividend Yield</th>
-                <td>{trailingAnnualDividendYield || "N/A"}</td>
+                <td>{toPercentages(trailingAnnualDividendYield) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>5 Year Average Dividend Yield</th>
-                <td>{fiveYearAvgDividendYield || "N/A"}</td>
+                <td>{toFixed(fiveYearAvgDividendYield) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>Payout Ratio</th>
-                <td>{payoutRatio || "N/A"}</td>
+                <td>{toPercentages(payoutRatio) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Dividend Date</th>
-                <td colSpan={2}>{dividendDate || "N/A"}</td>
+                <td colSpan={2}>{formateDate(dividendDate) || "N/A"}</td>
               </tr>
               <tr>
                 <th>Ex-Dividend Date 4</th>
-                <td colSpan={2}>{exDividendDate || "N/A"}</td>
+                <td colSpan={2}>{formateDate(exDividendDate) || "N/A"}</td>
               </tr>
               <tr>
                 <th colSpan={2}>Last Split Factor 2</th>
@@ -177,7 +183,7 @@ export class Financials extends Component {
               </tr>
               <tr>
                 <th>Last Split Date 3</th>
-                <td colSpan={2}>{lastSplitDate || "N/A"}</td>
+                <td colSpan={2}>{formateDate(lastSplitDate) || "N/A"}</td>
               </tr>
             </Table>
           </WrapperDividends>
@@ -191,106 +197,106 @@ export class Financials extends Component {
             <caption>Fiscal Year</caption>
             <tr>
               <th>Fiscal Year Ends</th>
-              <td>{lastFiscalYearEnd || "N/A"}</td>
+              <td>{formateDate(lastFiscalYearEnd) || "N/A"}</td>
             </tr>
             <tr>
               <th>Most Recent Quarter (mrq)</th>
-              <td>{mostRecentQuarter || "N/A"}</td>
+              <td>{formateDate(mostRecentQuarter) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Profitability</caption>
             <tr>
               <th>Profit Margin</th>
-              <td>{profitMargins || "N/A"}</td>
+              <td>{toPercentages(profitMargins) || "N/A"}</td>
             </tr>
             <tr>
               <th>Operating Margin (ttm)</th>
-              <td>{operatingMargins || "N/A"}</td>
+              <td>{toPercentages(operatingMargins) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Management Effectiveness</caption>
             <tr>
-              <th>Return on Assets (ttm)</th>
-              <td>{returnOnAssets || "N/A"}</td>
+              <th>Return on Assets</th>
+              <td>{toPercentages(returnOnAssets) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Return on Equity (ttm)</th>
-              <td>{returnOnEquity || "N/A"}</td>
+              <th>Return on Equity</th>
+              <td>{toPercentages(returnOnEquity) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Income Statement</caption>
             <tr>
-              <th>Revenue (ttm)</th>
-              <td>{totalRevenue || "N/A"}</td>
+              <th>Revenue</th>
+              <td>{shortenNumber(totalRevenue) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Revenue Per Share (ttm)</th>
-              <td>{revenuePerShare || "N/A"}</td>
+              <th>Revenue Per Share</th>
+              <td>{toFixed(revenuePerShare) || "N/A"}</td>
             </tr>
             <tr>
               <th>Quarterly Revenue Growth (yoy)</th>
-              <td>{revenueGrowth || "N/A"}</td>
+              <td>{toPercentages(revenueGrowth) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Gross Profit (ttm)</th>
-              <td>{grossProfits || "N/A"}</td>
+              <th>Gross Profit</th>
+              <td>{shortenNumber(grossProfits) || "N/A"}</td>
             </tr>
             <tr>
               <th>EBITDA</th>
-              <td>{ebitda || "N/A"}</td>
+              <td>{shortenNumber(ebitda) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Net Income Avi to Common (ttm)</th>
-              <td>{netIncomeToCommon || "N/A"}</td>
+              <th>Net Income Avi to Common</th>
+              <td>{shortenNumber(netIncomeToCommon) || "N/A"}</td>
             </tr>
             <tr>
               <th>Diluted EPS (ttm)</th>
-              <td>{trailingEps || "N/A"}</td>
+              <td>{toFixed(trailingEps) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Quarterly Earnings Growth (yoy)</th>
-              <td>{earningsQuarterlyGrowth || "N/A"}</td>
+              <th>Quarterly Earnings Growth</th>
+              <td>{toPercentages(earningsQuarterlyGrowth) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Balance Sheet</caption>
             <tr>
-              <th>Total Cash (mrq)</th>
-              <td>{totalCash || "N/A"}</td>
+              <th>Total Cash</th>
+              <td>{shortenNumber(totalCash) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Total Cash Per Share (mrq)</th>
-              <td>{totalCashPerShare || "N/A"}</td>
+              <th>Total Cash Per Share</th>
+              <td>{toFixed(totalCashPerShare) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Total Debt (mrq) </th>
-              <td>{totalDebt || "N/A"}</td>
+              <th>Total Debt </th>
+              <td>{shortenNumber(totalDebt) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Total Debt/Equity (mrq) </th>
-              <td>{debtToEquity || "N/A"}</td>
+              <th>Total Debt/Equity </th>
+              <td>{toFixed(debtToEquity) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Current Ratio (mrq)</th>
-              <td>{currentRatio || "N/A"}</td>
+              <th>Current Ratio</th>
+              <td>{toFixed(currentRatio) || "N/A"}</td>
             </tr>
             <tr>
-              <th>Book Value Per Share (mrq)</th>
-              <td>{bookValue || "N/A"}</td>
+              <th>Book Value Per Share</th>
+              <td>{toFixed(bookValue) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Cash Flow Statement</caption>
             <tr>
               <th>Operating Cash Flow (ttm)</th>
-              <td>{operatingCashflow || "N/A"}</td>
+              <td>{shortenNumber(operatingCashflow) || "N/A"}</td>
             </tr>
             <tr>
               <th>Levered Free Cash Flow (ttm)</th>
-              <td>{freeCashflow || "N/A"}</td>
+              <td>{shortenNumber(freeCashflow) || "N/A"}</td>
             </tr>
           </Table>
         </div>
@@ -303,82 +309,82 @@ export class Financials extends Component {
             <caption>Stock price History</caption>
             <tr>
               <th>Beta (5Y Monthly) </th>
-              <td>{beta || "N/A"}</td>
+              <td>{toFixed(beta) || "N/A"}</td>
             </tr>
             <tr>
               <th>52-Week Change 3</th>
-              <td>{fiftyTwoWeekChange || "N/A"}</td>
+              <td>{toPercentages(fiftyTwoWeekChange) || "N/A"}</td>
             </tr>
             <tr>
               <th>S&P500 52-Week Change 3</th>
-              <td>{SandP52WeekChange || "N/A"}</td>
+              <td>{toPercentages(SandP52WeekChange) || "N/A"}</td>
             </tr>
             <tr>
               <th>52 Week High 3</th>
-              <td>{fiftyTwoWeekHigh || "N/A"}</td>
+              <td>{toFixed(fiftyTwoWeekHigh) || "N/A"}</td>
             </tr>
             <tr>
               <th>52 Week Low 3 </th>
-              <td>{fiftyTwoWeekLow || "N/A"}</td>
+              <td>{toFixed(fiftyTwoWeekLow) || "N/A"}</td>
             </tr>
             <tr>
               <th>50-Day Moving Average 3</th>
-              <td>{fiftyDayAverage || "N/A"}</td>
+              <td>{toFixed(fiftyDayAverage) || "N/A"}</td>
             </tr>
             <tr>
               <th>200-Day Moving Average 3</th>
-              <td>{twoHundredDayAverage || "N/A"}</td>
+              <td>{toFixed(twoHundredDayAverage) || "N/A"}</td>
             </tr>
           </Table>
           <Table>
             <caption>Share Statistics</caption>
             <tr>
               <th>Avg Vol (3 month)</th>
-              <td>{averageVolume || "N/A"}</td>
+              <td>{shortenNumber(averageVolume) || "N/A"}</td>
             </tr>
             <tr>
               <th>Avg Vol (10 day)</th>
-              <td>{averageVolume10days || "N/A"}</td>
+              <td>{shortenNumber(averageVolume10days) || "N/A"}</td>
             </tr>
             <tr>
               <th>Shares Outstanding</th>
-              <td>{sharesOutstanding || "N/A"}</td>
+              <td>{shortenNumber(sharesOutstanding) || "N/A"}</td>
             </tr>
             <tr>
               <th>Implied Shares Outstanding</th>
-              <td>{impliedSharesOutstanding || "N/A"}</td>
+              <td>{shortenNumber(impliedSharesOutstanding) || "N/A"}</td>
             </tr>
             <tr>
               <th>Float</th>
-              <td>{floatShares || "N/A"}</td>
+              <td>{shortenNumber(floatShares) || "N/A"}</td>
             </tr>
             <tr>
               <th>% Held by Insiders</th>
-              <td>{heldPercentInsiders || "N/A"}</td>
+              <td>{toPercentages(heldPercentInsiders) || "N/A"}</td>
             </tr>
             <tr>
               <th>% Held by Institutions</th>
-              <td>{heldPercentInstitutions || "N/A"}</td>
+              <td>{toPercentages(heldPercentInstitutions) || "N/A"}</td>
             </tr>
             <tr>
               <th>Shares Short (Jul 14, 2021)</th>
-              <td>{sharesShort || "N/A"}</td>
+              <td>{shortenNumber(sharesShort) || "N/A"}</td>
             </tr>
             <tr>
               <th>Short Ratio (Jul 14, 2021)</th>
-              <td>{shortRatio || "N/A"}</td>
+              <td>{toFixed(shortRatio) || "N/A"}</td>
             </tr>
             <tr>
               <th>Short % of Float (Jul 14, 2021)</th>
-              <td>{shortPercentOfFloat || "N/A"}</td>
+              <td>{toPercentages(shortPercentOfFloat) || "N/A"}</td>
             </tr>
             <tr>
               <th>Short % of Shares Outstanding (Jul 14, 2021)</th>
-              <td>{sharesPercentSharesOut || "N/A"}</td>
+              <td>{toPercentages(sharesPercentSharesOut) || "N/A"}</td>
             </tr>
             <tr>
               <th>Shares Short (prior month Jun 14, 2021)</th>
-              <td>{sharesShortPriorMonth || "N/A"}</td>
+              <td>{shortenNumber(sharesShortPriorMonth) || "N/A"}</td>
             </tr>
           </Table>
         </div>
