@@ -10,7 +10,7 @@ dotenv.config();
 mongoUtil.connectToServer(function () {
   const app = express();
   app.use(cors());
-  app.use("/api/tickers", tickers);
+  app.use("/tickers", tickers);
 
   const PORT = process.env.PORT || 3900;
   app.listen(PORT, () =>
