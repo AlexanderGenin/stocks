@@ -19,11 +19,9 @@ mongoUtil.connectToServer(function () {
 
   const __dirname = path.resolve();
 
-  // Serve static files from the React frontend app
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(path.join(__dirname, "client/build")));
 
-  // AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+  app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 });
