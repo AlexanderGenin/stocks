@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bubble } from "react-chartjs-2";
+import { Scatter } from "react-chartjs-2";
 
 import { withTheme } from "styled-components";
 
@@ -8,36 +8,36 @@ class PriceTarget extends Component {
     datasets: [
       {
         label: "Low",
-        data: [
-          { x: this.props.stats.financialData.targetLowPrice, y: 0, r: 4 },
-        ],
+        data: [{ x: this.props.stats.financialData.targetLowPrice, y: 0 }],
         backgroundColor: this.props.theme.textColor,
-        hoverRadius: 4,
         clip: 20,
+        pointRadius: 4,
+        pointHoverRadius: 7,
       },
       {
         label: "High",
-        data: [
-          { x: this.props.stats.financialData.targetHighPrice, y: 0, r: 4 },
-        ],
+        data: [{ x: this.props.stats.financialData.targetHighPrice, y: 0 }],
         backgroundColor: this.props.theme.textColor,
-        hoverRadius: 4,
         clip: 20,
+        pointRadius: 4,
+        pointHoverRadius: 7,
       },
       {
         label: "Average",
-        data: [
-          { x: this.props.stats.financialData.targetMeanPrice, y: 0, r: 8 },
-        ],
+        data: [{ x: this.props.stats.financialData.targetMeanPrice, y: 0 }],
         backgroundColor: this.props.theme.extraColor,
         clip: 20,
+        pointRadius: 8,
+        pointHoverRadius: 12,
       },
       {
         label: "Current",
-        data: [{ x: this.props.stats.financialData.currentPrice, y: 0, r: 8 }],
+        data: [{ x: this.props.stats.financialData.currentPrice, y: 0 }],
         backgroundColor: "transparent",
         borderColor: this.props.theme.mainColor,
         clip: 20,
+        pointRadius: 8,
+        pointHoverRadius: 12,
       },
     ],
   };
@@ -46,6 +46,13 @@ class PriceTarget extends Component {
     plugins: {
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          title: function (context) {
+            return context[0].dataset.label;
+          },
+        },
       },
     },
     scales: {
@@ -82,7 +89,7 @@ class PriceTarget extends Component {
   render() {
     return (
       <>
-        <Bubble
+        <Scatter
           data={this.data}
           options={this.options}
           width={224}

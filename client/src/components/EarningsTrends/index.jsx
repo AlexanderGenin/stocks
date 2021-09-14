@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bubble } from "react-chartjs-2";
+import { Scatter } from "react-chartjs-2";
 import { withTheme } from "styled-components";
 
 class EarningsTrends extends Component {
@@ -15,30 +15,33 @@ class EarningsTrends extends Component {
         {
           label: "Actual",
           data: [
-            { x: quarterly[0].date, y: quarterly[0].actual, r: 10 },
-            { x: quarterly[1].date, y: quarterly[1].actual, r: 10 },
-            { x: quarterly[2].date, y: quarterly[2].actual, r: 10 },
-            { x: quarterly[3].date, y: quarterly[3].actual, r: 10 },
+            { x: quarterly[0].date, y: quarterly[0].actual },
+            { x: quarterly[1].date, y: quarterly[1].actual },
+            { x: quarterly[2].date, y: quarterly[2].actual },
+            { x: quarterly[3].date, y: quarterly[3].actual },
           ],
           backgroundColor: this.props.theme.mainColor,
           clip: 20,
+          pointRadius: 10,
+          pointHoverRadius: 12,
         },
         {
           label: "Estimate",
           data: [
-            { x: quarterly[0].date, y: quarterly[0].estimate, r: 10 },
-            { x: quarterly[1].date, y: quarterly[1].estimate, r: 10 },
-            { x: quarterly[2].date, y: quarterly[2].estimate, r: 10 },
-            { x: quarterly[3].date, y: quarterly[3].estimate, r: 10 },
+            { x: quarterly[0].date, y: quarterly[0].estimate },
+            { x: quarterly[1].date, y: quarterly[1].estimate },
+            { x: quarterly[2].date, y: quarterly[2].estimate },
+            { x: quarterly[3].date, y: quarterly[3].estimate },
             {
               x: currentQuarterEstimateDate + currentQuarterEstimateYear,
               y: currentQuarterEstimate,
-              r: 10,
             },
           ],
           backgroundColor: "transparent",
           borderColor: this.props.theme.extraColor,
           clip: 20,
+          pointRadius: 10,
+          pointHoverRadius: 12,
         },
       ],
     };
@@ -76,7 +79,11 @@ class EarningsTrends extends Component {
 
     return (
       <>
-        <Bubble data={data} options={options} style={{ marginLeft: "-20px" }} />
+        <Scatter
+          data={data}
+          options={options}
+          style={{ marginLeft: "-20px" }}
+        />
       </>
     );
   }
