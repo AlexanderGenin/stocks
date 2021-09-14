@@ -26,7 +26,7 @@ export class Info extends Component {
       fullTimeEmployees,
     } = this.props.tickerStats.summaryProfile;
 
-    const googleMapsLookup = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCVQX6Y5KcHdvivfmWdUO0ZP4_m-13X_CI&q=${address1}+${city}`;
+    const googleMapsLookup = `https://www.google.com/maps/embed/v1/place?key=AIzaSyAutXJcOZS__6gZ1qILUboE7nTpxun5Hbc&q=${address1}+${city}`;
 
     return (
       <MainGrid>
